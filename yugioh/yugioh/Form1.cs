@@ -16,5 +16,15 @@ namespace yugioh
         {
             InitializeComponent();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if(button6.BackColor == Color.Aqua)
+            {
+                button6.BackColor = Color.Gray;
+            } else {
+                button6.BackColor = Color.Aqua;
+            }
+        }
     }
 }
