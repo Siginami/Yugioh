@@ -26,5 +26,15 @@ namespace yugioh
                 button6.BackColor = Color.Aqua;
             }
         }
+
+        private void button209_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
