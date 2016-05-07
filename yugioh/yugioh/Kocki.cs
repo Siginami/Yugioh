@@ -9,69 +9,20 @@ namespace yugioh
     
     class Kocki
     {
-        public enum kockavalue
+        public string strana1 { get; set; }
+        public string strana2 { get; set; }
+        public string strana3 { get; set; }
+        public string strana4 { get; set; }
+        public string strana5 { get; set; }
+        public string strana6 { get; set; }
+        public Kocki(string strana1, string strana2, string strana3, string strana4, string strana5, string strana6)
         {
-            Summon2,
-            Summon3,
-            Summon4,
-            Move,
-            Move2,
-            Attack,
-            Attack2,
-            Deffend,
-            Deffend2,
-            Magic,
-            Magic2,
-        }
-        static string generateValue(kockavalue kockaValue) {
-            int Seed = (int)DateTime.Now.Ticks;
-            Random random = new Random(Seed);
-            int broj1 = random.Next(1, 11);
-            if(broj1 == 1)
-            {
-                kockaValue = kockavalue.Summon2;
-            }
-            if (broj1 == 2)
-            {
-                kockaValue = kockavalue.Summon3;
-            }
-            if (broj1 == 3)
-            {
-                kockaValue = kockavalue.Summon4;
-            }
-            if (broj1 == 4)
-            {
-                kockaValue = kockavalue.Move;
-            }
-            if (broj1 == 5)
-            {
-                kockaValue = kockavalue.Move2;
-            }
-            if (broj1 == 6)
-            {
-                kockaValue = kockavalue.Attack;
-            }
-            if (broj1 == 7)
-            {
-                kockaValue = kockavalue.Attack2;
-            }
-            if (broj1 == 8)
-            {
-                kockaValue = kockavalue.Deffend;
-            }
-            if (broj1 == 9)
-            {
-                kockaValue = kockavalue.Deffend2;
-            }
-            if (broj1 == 10)
-            {
-                kockaValue = kockavalue.Magic;
-            }
-            if (broj1 == 11)
-            {
-                kockaValue = kockavalue.Magic2;
-            }
-            return kockaValue.ToString();
+            this.strana1 = strana1;
+            this.strana2 = strana2;
+            this.strana3 = strana3;
+            this.strana4 = strana4;
+            this.strana5 = strana5;
+            this.strana6 = strana6;
         }
     }
 }

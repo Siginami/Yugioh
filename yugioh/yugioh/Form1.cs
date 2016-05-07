@@ -12,6 +12,8 @@ namespace yugioh
 {
     public partial class Form1 : Form
     {
+        static int Seed = (int)DateTime.Now.Ticks;
+        Random brojce = new Random(Seed);
         protected DrawDoc docGrForms;
         protected DrawDoc clipBoard = null;
         protected String FileName = null;
@@ -23,6 +25,21 @@ namespace yugioh
         {
             InitializeComponent();
             docGrForms = new DrawDoc();
+            Kocki kocka1 = new Kocki("Summon2", "Summon2", "Summon2", "Magic", "Move", "Move");
+            Kocki kocka2 = new Kocki("Summon2", "Summon2", "Summon2", "Move", "Deffend", "Attack");
+            Kocki kocka3 = new Kocki("Summon2", "Summon2", "Summon2", "Attack", "Attack", "Magic");
+            Kocki kocka4 = new Kocki("Summon2", "Summon2", "Summon2", "Deffend", "Attack", "Magic");
+            Kocki kocka5 = new Kocki("Summon2", "Summon2", "Summon2", "Magic", "Magic", "Deffend");
+            Kocki kocka6 = new Kocki("Summon2", "Move", "Attack", "Magic", "Deffend", "Move2");
+            Kocki kocka7 = new Kocki("Summon2", "Move", "Magic", "Magic", "Deffend", "Deffend");
+            Kocki kocka8 = new Kocki("Summon2", "Attack", "Attack", "Magic", "Magic", "Deffend");
+            Kocki kocka9 = new Kocki("Summon2", "Summon2", "Summon2", "Attack", "Move", "Deffend");
+            Kocki kocka10 = new Kocki("Summon3", "Summon3", "Attack2", "Magic", "Move2", "Deffend");
+            Kocki kocka11 = new Kocki("Summon3", "Summon3", "Attack", "Magic", "Move2", "Deffend2");
+            Kocki kocka12 = new Kocki("Summon3", "Summon3", "Attack", "Magic2", "Move2", "Deffend");
+            Kocki kocka13 = new Kocki("Summon3", "Summon3", "Attack", "Magic2", "Move", "Deffend2");
+            Kocki kocka14 = new Kocki("Summon4", "Magic2", "Attack2", "Move2", "Deffend2", "Move3");
+            Kocki kocka15 = new Kocki("Summon4", "Move2", "Magic2", "Deffend2", "Attack2", "Magic3");
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -79,6 +96,13 @@ namespace yugioh
                 moveClickPosition = e.Location;
                 Invalidate(true);
             }
+        }
+
+        private void endturn_Click(object sender, EventArgs e)
+        {
+            int randomizer = brojce.Next(1, 15);
+            int randomizer2 = brojce.Next(1, 6);
+            //Kako da pristapam do kockata so broj randomizer i stranata so broj randomizer2???
         }
     }
 }

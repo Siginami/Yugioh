@@ -239,6 +239,7 @@
             this.endturn.TabIndex = 16;
             this.endturn.Text = "End Turn";
             this.endturn.UseVisualStyleBackColor = true;
+            this.endturn.Click += new System.EventHandler(this.endturn_Click);
             // 
             // kocka1
             // 
