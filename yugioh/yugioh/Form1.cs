@@ -467,6 +467,48 @@ namespace yugioh
             return value;
         }
 
+        /*private PictureBox Najdislika(string kocka)
+        {
+            switch (kocka)
+            {
+                case "Summon2":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Summon3":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Summon4":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Move":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Attack":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Deffend":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Magic":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Move2":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Attack2":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Deffend2":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+                case "Magic2":
+                    kocka1.Image = Image.FromFile("");
+                    break;
+            }
+            return null;
+        }*/
+        //sto treba da stoi namesto kocka1 vo kocka1.image i vo return???
+
         private void endturn_Click(object sender, EventArgs e)
         {
 
@@ -479,6 +521,9 @@ namespace yugioh
             string prvakocka = PresmetajValue(randomizer, randomzier2);
             string vtorakocka = PresmetajValue(randomizer3, randomzier4);
             string tretakocka = PresmetajValue(randomizer5,randomzier6);
+            /*kocka1 = Najdislika(prvakocka);
+            kocka2 = Najdislika(vtorakocka);
+            kocka3 = Najdislika(tretakocka);*/
         }
     }
 }

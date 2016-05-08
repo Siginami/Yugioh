@@ -89,8 +89,10 @@
             // 
             this.player1magic.Location = new System.Drawing.Point(201, 197);
             this.player1magic.Name = "player1magic";
+            this.player1magic.ReadOnly = true;
             this.player1magic.Size = new System.Drawing.Size(180, 20);
             this.player1magic.TabIndex = 6;
+            this.player1magic.Text = "0";
             // 
             // label3
             // 
@@ -105,15 +107,19 @@
             // 
             this.player1deffend.Location = new System.Drawing.Point(201, 138);
             this.player1deffend.Name = "player1deffend";
+            this.player1deffend.ReadOnly = true;
             this.player1deffend.Size = new System.Drawing.Size(180, 20);
             this.player1deffend.TabIndex = 4;
+            this.player1deffend.Text = "0";
             // 
             // player1attack
             // 
             this.player1attack.Location = new System.Drawing.Point(201, 79);
             this.player1attack.Name = "player1attack";
+            this.player1attack.ReadOnly = true;
             this.player1attack.Size = new System.Drawing.Size(180, 20);
             this.player1attack.TabIndex = 3;
+            this.player1attack.Text = "0";
             // 
             // label2
             // 
@@ -128,8 +134,10 @@
             // 
             this.player1move.Location = new System.Drawing.Point(201, 20);
             this.player1move.Name = "player1move";
+            this.player1move.ReadOnly = true;
             this.player1move.Size = new System.Drawing.Size(180, 20);
             this.player1move.TabIndex = 1;
+            this.player1move.Text = "0";
             // 
             // label1
             // 
@@ -171,8 +179,10 @@
             // 
             this.player2magic.Location = new System.Drawing.Point(201, 197);
             this.player2magic.Name = "player2magic";
+            this.player2magic.ReadOnly = true;
             this.player2magic.Size = new System.Drawing.Size(180, 20);
             this.player2magic.TabIndex = 6;
+            this.player2magic.Text = "0";
             // 
             // label6
             // 
@@ -187,15 +197,19 @@
             // 
             this.player2deffend.Location = new System.Drawing.Point(201, 138);
             this.player2deffend.Name = "player2deffend";
+            this.player2deffend.ReadOnly = true;
             this.player2deffend.Size = new System.Drawing.Size(180, 20);
             this.player2deffend.TabIndex = 4;
+            this.player2deffend.Text = "0";
             // 
             // player2attack
             // 
             this.player2attack.Location = new System.Drawing.Point(201, 79);
             this.player2attack.Name = "player2attack";
+            this.player2attack.ReadOnly = true;
             this.player2attack.Size = new System.Drawing.Size(180, 20);
             this.player2attack.TabIndex = 3;
+            this.player2attack.Text = "0";
             // 
             // label7
             // 
@@ -210,8 +224,10 @@
             // 
             this.player2move.Location = new System.Drawing.Point(201, 20);
             this.player2move.Name = "player2move";
+            this.player2move.ReadOnly = true;
             this.player2move.Size = new System.Drawing.Size(180, 20);
             this.player2move.TabIndex = 1;
+            this.player2move.Text = "0";
             // 
             // label8
             // 
