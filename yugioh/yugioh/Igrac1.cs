@@ -12,5 +12,6 @@ namespace yugioh
         int Move = 0;
         int Attack = 0;
         int Deffend = 0;
+        int Zivoti = 3;
     }
 }

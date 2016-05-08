@@ -12,6 +12,10 @@ namespace yugioh
 {
     public partial class Form1 : Form
     {
+        Igrac2 igrac1 = new Igrac2();
+        Igrac2 igrac2 = new Igrac2();
+        bool prvigrac = false;
+        bool flag = true;
         static int Seed = (int)DateTime.Now.Ticks;
         Random brojce = new Random(Seed);
         protected DrawDoc docGrForms;
@@ -506,23 +510,113 @@ namespace yugioh
                     break;
             }
         }*/
-        //vadi exception ne go rabiram =/
+        private void PromeniValue(string kocka, Igrac2 igrac)
+        {
+            switch (kocka)
+            {
+                case "Summon2":
+                    
+                    break;
+                case "Summon3":
+                    
+                    break;
+                case "Summon4":
+                    
+                    break;
+                case "Move":
+                    igrac.Move++;
+                    break;
+                case "Attack":
+                    igrac.Attack++;
+                    break;
+                case "Deffend":
+                    igrac.Deffend++;
+                    break;
+                case "Magic":
+                    igrac.Magic++;
+                    break;
+                case "Move2":
+                    igrac.Move += 2;
+                    break;
+                case "Attack2":
+                    igrac.Attack += 2;
+                    break;
+                case "Deffend2":
+                    igrac.Deffend += 2;
+                    break;
+                case "Magic2":
+                    igrac.Magic += 2;
+                    break;
+            }
+        }
 
         private void endturn_Click(object sender, EventArgs e)
         {
-
-            int randomizer = brojce.Next(1, 15);
-            int randomzier2 = brojce.Next(1, 6);
-            int randomizer3 = brojce.Next(1, 15);
-            int randomzier4 = brojce.Next(1, 6);
-            int randomizer5= brojce.Next(1, 15);
-            int randomzier6 = brojce.Next(1, 6);
-            string prvakocka = PresmetajValue(randomizer, randomzier2);
-            string vtorakocka = PresmetajValue(randomizer3, randomzier4);
-            string tretakocka = PresmetajValue(randomizer5,randomzier6);
-            /*Najdislika(prvakocka, kocka1);
-            Najdislika(vtorakocka, kocka2);
-            Najdislika(tretakocka, kocka3);*/
+            
+            if (!flag)
+                {
+                    int randomizer = brojce.Next(1, 15);
+                    int randomzier2 = brojce.Next(1, 6);
+                    int randomizer3 = brojce.Next(1, 15);
+                    int randomzier4 = brojce.Next(1, 6);
+                    int randomizer5 = brojce.Next(1, 15);
+                    int randomzier6 = brojce.Next(1, 6);
+                    string prvakocka = PresmetajValue(randomizer, randomzier2);
+                    string vtorakocka = PresmetajValue(randomizer3, randomzier4);
+                    string tretakocka = PresmetajValue(randomizer5, randomzier6);
+                    /*Najdislika(prvakocka, kocka1);
+                    Najdislika(vtorakocka, kocka2);
+                    Najdislika(tretakocka, kocka3);*/
+                    if (prvigrac)
+                    {
+                        DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        PromeniValue(prvakocka, igrac1);
+                        PromeniValue(vtorakocka, igrac1);
+                        PromeniValue(tretakocka, igrac1);
+                        player1move.Text = igrac1.Move.ToString();
+                        player1attack.Text = igrac1.Attack.ToString();
+                        player1deffend.Text = igrac1.Deffend.ToString();
+                        player1magic.Text = igrac1.Magic.ToString();
+                        prvigrac = false;
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        PromeniValue(prvakocka, igrac2);
+                        PromeniValue(vtorakocka, igrac2);
+                        PromeniValue(tretakocka, igrac2);
+                        player2move.Text = igrac2.Move.ToString();
+                        player2attack.Text = igrac2.Attack.ToString();
+                        player2deffend.Text = igrac2.Deffend.ToString();
+                        player2magic.Text = igrac2.Magic.ToString();
+                        prvigrac = true;
+                    }
+            }
+            else
+            {
+                int randomizer = brojce.Next(1, 15);
+                int randomzier2 = brojce.Next(1, 6);
+                int randomizer3 = brojce.Next(1, 15);
+                int randomzier4 = brojce.Next(1, 6);
+                int randomizer5 = brojce.Next(1, 15);
+                int randomzier6 = brojce.Next(1, 6);
+                string prvakocka = PresmetajValue(randomizer, randomzier2);
+                string vtorakocka = PresmetajValue(randomizer3, randomzier4);
+                string tretakocka = PresmetajValue(randomizer5, randomzier6);
+                /*Najdislika(prvakocka, kocka1);
+                Najdislika(vtorakocka, kocka2);
+                Najdislika(tretakocka, kocka3);*/
+                DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PromeniValue(prvakocka, igrac1);
+                PromeniValue(vtorakocka, igrac1);
+                PromeniValue(tretakocka, igrac1);
+                player1move.Text = igrac1.Move.ToString();
+                player1attack.Text = igrac1.Attack.ToString();
+                player1deffend.Text = igrac1.Deffend.ToString();
+                player1magic.Text = igrac1.Magic.ToString();
+                prvigrac = false;
+                flag = false;
+            }
         }
     }
 }
