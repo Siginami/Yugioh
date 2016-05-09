@@ -52,6 +52,10 @@
             this.kocka2 = new System.Windows.Forms.PictureBox();
             this.kocka3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Hearts = new System.Windows.Forms.Label();
+            this.player1zivoti = new System.Windows.Forms.TextBox();
+            this.player2zivoti = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kocka1)).BeginInit();
@@ -61,6 +65,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.player1zivoti);
+            this.groupBox2.Controls.Add(this.Hearts);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.player1magic);
             this.groupBox2.Controls.Add(this.label3);
@@ -79,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(147, 200);
+            this.label4.Location = new System.Drawing.Point(147, 193);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 7;
@@ -87,7 +93,7 @@
             // 
             // player1magic
             // 
-            this.player1magic.Location = new System.Drawing.Point(201, 197);
+            this.player1magic.Location = new System.Drawing.Point(201, 190);
             this.player1magic.Name = "player1magic";
             this.player1magic.ReadOnly = true;
             this.player1magic.Size = new System.Drawing.Size(180, 20);
@@ -97,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(147, 141);
+            this.label3.Location = new System.Drawing.Point(147, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 5;
@@ -105,7 +111,7 @@
             // 
             // player1deffend
             // 
-            this.player1deffend.Location = new System.Drawing.Point(201, 138);
+            this.player1deffend.Location = new System.Drawing.Point(201, 132);
             this.player1deffend.Name = "player1deffend";
             this.player1deffend.ReadOnly = true;
             this.player1deffend.Size = new System.Drawing.Size(180, 20);
@@ -114,7 +120,7 @@
             // 
             // player1attack
             // 
-            this.player1attack.Location = new System.Drawing.Point(201, 79);
+            this.player1attack.Location = new System.Drawing.Point(201, 74);
             this.player1attack.Name = "player1attack";
             this.player1attack.ReadOnly = true;
             this.player1attack.Size = new System.Drawing.Size(180, 20);
@@ -124,7 +130,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(147, 82);
+            this.label2.Location = new System.Drawing.Point(147, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 2;
@@ -132,7 +138,7 @@
             // 
             // player1move
             // 
-            this.player1move.Location = new System.Drawing.Point(201, 20);
+            this.player1move.Location = new System.Drawing.Point(201, 16);
             this.player1move.Name = "player1move";
             this.player1move.ReadOnly = true;
             this.player1move.Size = new System.Drawing.Size(180, 20);
@@ -142,7 +148,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 23);
+            this.label1.Location = new System.Drawing.Point(147, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 0;
@@ -151,6 +157,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.player2zivoti);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.player2magic);
             this.groupBox3.Controls.Add(this.label6);
@@ -169,7 +177,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(147, 200);
+            this.label5.Location = new System.Drawing.Point(147, 191);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 7;
@@ -177,7 +185,7 @@
             // 
             // player2magic
             // 
-            this.player2magic.Location = new System.Drawing.Point(201, 197);
+            this.player2magic.Location = new System.Drawing.Point(201, 187);
             this.player2magic.Name = "player2magic";
             this.player2magic.ReadOnly = true;
             this.player2magic.Size = new System.Drawing.Size(180, 20);
@@ -187,7 +195,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(147, 141);
+            this.label6.Location = new System.Drawing.Point(147, 133);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 5;
@@ -195,7 +203,7 @@
             // 
             // player2deffend
             // 
-            this.player2deffend.Location = new System.Drawing.Point(201, 138);
+            this.player2deffend.Location = new System.Drawing.Point(201, 130);
             this.player2deffend.Name = "player2deffend";
             this.player2deffend.ReadOnly = true;
             this.player2deffend.Size = new System.Drawing.Size(180, 20);
@@ -204,7 +212,7 @@
             // 
             // player2attack
             // 
-            this.player2attack.Location = new System.Drawing.Point(201, 79);
+            this.player2attack.Location = new System.Drawing.Point(201, 73);
             this.player2attack.Name = "player2attack";
             this.player2attack.ReadOnly = true;
             this.player2attack.Size = new System.Drawing.Size(180, 20);
@@ -214,7 +222,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(147, 82);
+            this.label7.Location = new System.Drawing.Point(147, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 2;
@@ -222,7 +230,7 @@
             // 
             // player2move
             // 
-            this.player2move.Location = new System.Drawing.Point(201, 20);
+            this.player2move.Location = new System.Drawing.Point(201, 16);
             this.player2move.Name = "player2move";
             this.player2move.ReadOnly = true;
             this.player2move.Size = new System.Drawing.Size(180, 20);
@@ -240,12 +248,14 @@
             // 
             // summon
             // 
+            this.summon.Enabled = false;
             this.summon.Location = new System.Drawing.Point(489, 302);
             this.summon.Name = "summon";
             this.summon.Size = new System.Drawing.Size(113, 52);
             this.summon.TabIndex = 15;
             this.summon.Text = "Summon";
             this.summon.UseVisualStyleBackColor = true;
+            this.summon.Click += new System.EventHandler(this.summon_Click);
             // 
             // endturn
             // 
@@ -291,6 +301,40 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
+            // 
+            // Hearts
+            // 
+            this.Hearts.AutoSize = true;
+            this.Hearts.Location = new System.Drawing.Point(147, 251);
+            this.Hearts.Name = "Hearts";
+            this.Hearts.Size = new System.Drawing.Size(38, 13);
+            this.Hearts.TabIndex = 8;
+            this.Hearts.Text = "Hearts";
+            // 
+            // player1zivoti
+            // 
+            this.player1zivoti.Location = new System.Drawing.Point(201, 248);
+            this.player1zivoti.Name = "player1zivoti";
+            this.player1zivoti.Size = new System.Drawing.Size(180, 20);
+            this.player1zivoti.TabIndex = 9;
+            this.player1zivoti.Text = "3";
+            // 
+            // player2zivoti
+            // 
+            this.player2zivoti.Location = new System.Drawing.Point(201, 244);
+            this.player2zivoti.Name = "player2zivoti";
+            this.player2zivoti.Size = new System.Drawing.Size(180, 20);
+            this.player2zivoti.TabIndex = 8;
+            this.player2zivoti.Text = "3";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(147, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Hearts";
             // 
             // Form1
             // 
@@ -343,6 +387,10 @@
         private System.Windows.Forms.PictureBox kocka2;
         private System.Windows.Forms.PictureBox kocka3;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox player1zivoti;
+        private System.Windows.Forms.Label Hearts;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox player2zivoti;
     }
 }
 

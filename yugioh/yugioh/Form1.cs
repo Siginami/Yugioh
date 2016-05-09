@@ -14,8 +14,9 @@ namespace yugioh
     {
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
-        bool prvigrac = false;
-        bool flag = true;
+        string whatsummon = "";//da se znae koj summon kje se pravi
+        bool prvigrac = false;//dali e prviot ili vtoriot na red igrata pocnuva koga kje se klikne end turn
+        bool flag = true;//dali e kliknato end turn prethodno ili ne
         static int Seed = (int)DateTime.Now.Ticks;
         Random brojce = new Random(Seed);
         protected DrawDoc docGrForms;
@@ -550,47 +551,97 @@ namespace yugioh
             }
         }
 
+        private void Canyousummon(string prvakocka, string vtorakocka, string tretakocka)
+        {
+            if(prvakocka == "Summon2" && prvakocka == vtorakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon2";
+            }
+            else if(prvakocka == "Summon2" && prvakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon2";
+            }
+            else if(vtorakocka == "Summon2" && vtorakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon2";
+            }
+            else if (prvakocka == "Summon3" && prvakocka == vtorakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon3";
+            }
+            else if (prvakocka == "Summon3" && prvakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon3";
+            }
+            else if (vtorakocka == "Summon3" && vtorakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon3";
+            }
+            else if (prvakocka == "Summon4" && prvakocka == vtorakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon4";
+            }
+            else if (prvakocka == "Summon4" && prvakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon4";
+            }
+            else if (vtorakocka == "Summon4" && vtorakocka == tretakocka)
+            {
+                summon.Enabled = true;
+                whatsummon = "Summon4";
+            }
+        }
+
         private void endturn_Click(object sender, EventArgs e)
         {
-            
             if (!flag)
+            {
+                int randomizer = brojce.Next(1, 15);
+                int randomzier2 = brojce.Next(1, 6);
+                int randomizer3 = brojce.Next(1, 15);
+                int randomzier4 = brojce.Next(1, 6);
+                int randomizer5 = brojce.Next(1, 15);
+                int randomzier6 = brojce.Next(1, 6);
+                string prvakocka = PresmetajValue(randomizer, randomzier2);
+                string vtorakocka = PresmetajValue(randomizer3, randomzier4);
+                string tretakocka = PresmetajValue(randomizer5, randomzier6);
+                /*Najdislika(prvakocka, kocka1);
+                Najdislika(vtorakocka, kocka2);
+                Najdislika(tretakocka, kocka3);*/
+                if (prvigrac)
                 {
-                    int randomizer = brojce.Next(1, 15);
-                    int randomzier2 = brojce.Next(1, 6);
-                    int randomizer3 = brojce.Next(1, 15);
-                    int randomzier4 = brojce.Next(1, 6);
-                    int randomizer5 = brojce.Next(1, 15);
-                    int randomzier6 = brojce.Next(1, 6);
-                    string prvakocka = PresmetajValue(randomizer, randomzier2);
-                    string vtorakocka = PresmetajValue(randomizer3, randomzier4);
-                    string tretakocka = PresmetajValue(randomizer5, randomzier6);
-                    /*Najdislika(prvakocka, kocka1);
-                    Najdislika(vtorakocka, kocka2);
-                    Najdislika(tretakocka, kocka3);*/
-                    if (prvigrac)
-                    {
-                        DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        PromeniValue(prvakocka, igrac1);
-                        PromeniValue(vtorakocka, igrac1);
-                        PromeniValue(tretakocka, igrac1);
-                        player1move.Text = igrac1.Move.ToString();
-                        player1attack.Text = igrac1.Attack.ToString();
-                        player1deffend.Text = igrac1.Deffend.ToString();
-                        player1magic.Text = igrac1.Magic.ToString();
-                        prvigrac = false;
-                    }
-                    else
-                    {
-                        DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        PromeniValue(prvakocka, igrac2);
-                        PromeniValue(vtorakocka, igrac2);
-                        PromeniValue(tretakocka, igrac2);
-                        player2move.Text = igrac2.Move.ToString();
-                        player2attack.Text = igrac2.Attack.ToString();
-                        player2deffend.Text = igrac2.Deffend.ToString();
-                        player2magic.Text = igrac2.Magic.ToString();
-                        prvigrac = true;
-                    }
+                    DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PromeniValue(prvakocka, igrac1);
+                    PromeniValue(vtorakocka, igrac1);
+                    PromeniValue(tretakocka, igrac1);
+                    Canyousummon(prvakocka, vtorakocka, tretakocka);
+                    player1move.Text = igrac1.Move.ToString();
+                    player1attack.Text = igrac1.Attack.ToString();
+                    player1deffend.Text = igrac1.Deffend.ToString();
+                    player1magic.Text = igrac1.Magic.ToString();
+                    prvigrac = false;
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PromeniValue(prvakocka, igrac2);
+                    PromeniValue(vtorakocka, igrac2);
+                    PromeniValue(tretakocka, igrac2);
+                    Canyousummon(prvakocka, vtorakocka, tretakocka);
+                    player2move.Text = igrac2.Move.ToString();
+                    player2attack.Text = igrac2.Attack.ToString();
+                    player2deffend.Text = igrac2.Deffend.ToString();
+                    player2magic.Text = igrac2.Magic.ToString();
+                    prvigrac = true;
+                }
             }
             else
             {
@@ -610,6 +661,7 @@ namespace yugioh
                 PromeniValue(prvakocka, igrac1);
                 PromeniValue(vtorakocka, igrac1);
                 PromeniValue(tretakocka, igrac1);
+                Canyousummon(prvakocka, vtorakocka, tretakocka);
                 player1move.Text = igrac1.Move.ToString();
                 player1attack.Text = igrac1.Attack.ToString();
                 player1deffend.Text = igrac1.Deffend.ToString();
@@ -617,6 +669,11 @@ namespace yugioh
                 prvigrac = false;
                 flag = false;
             }
+        }
+
+        private void summon_Click(object sender, EventArgs e)
+        {
+            summon.Enabled = false;
         }
     }
 }
