@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace yugioh
 {
-    [Serializable]
-    public class DrawForm
+   
+    public class Place
     {
         public Point Position { get; set; }
         public Color Col { get; set; }
@@ -34,32 +34,37 @@ namespace yugioh
             }
         }
 
-        public DrawForm()
+        public Place()
         {
             Position = Point.Empty;
         }
 
-        public DrawForm(DrawForm f) : this(f.Position, f.Col, f.Size, f.isSelected)
+        public Place(Place f) : this(f.Position, f.Col, f.Size, f.isSelected)
         {
         }
-        public DrawForm(Point p, bool player1, bool player2)
+        public Place(Color col)
+        {
+            Col = col;
+        }
+        public Place(Point p, Color col, int size)
         {
             Position = p;
-            this.player1 = player1;
-            this.player2 = player2;
+            Col = col;
+            Size = size;
         }
-        public DrawForm(Point p, Color col, int size, bool sel = false)
+        public Place(Point p, Color col, int size, bool sel = false)
         {
             Position = p;
             Col = col;
             Size = size;
             isSelected = sel;
         }
-        public DrawForm(int x, int y, Color col, int size)
+        public Place(int x, int y, Color col, int size)
         {
             Position = new Point(x, y);
             Col = col;
             Size = size;
+            isSelected = false;
         }
 
         public void Move(int x, int y)
@@ -68,8 +73,14 @@ namespace yugioh
         }
 
 
-        public void Draw(Graphics g)
+        public void Draw(Graphics g, bool isSelected)
         {
+            
+            Col = Color.Red;
+            if (isSelected)
+            {
+                Col = Color.Black;
+            }
             SolidBrush br = new SolidBrush(Col);
             Rectangle boundRect = new Rectangle(Position, new Size(this.Size, this.Size));
             boundRect.Offset(-Size/2, -Size/2);
@@ -82,57 +93,49 @@ namespace yugioh
                 g.DrawEllipse(pn, boundRect);
                 pn.Dispose();
             }
+
+
         }
     }
 
-    [Serializable]
-    public class DrawDoc
+    
+    public class Grid
     {
-        public List<DrawForm> drwObj;
+        public List<Place> drwPlaces;
         public int NumObjects
         {
-            get { return drwObj.Count; }
+            get { return drwPlaces.Count; }
         }
 
-        public int NumSelectedObjects
+       
+
+        public Grid()
+        {
+            drwPlaces = new List<Place>();
+        }
+
+        public Place this[int index]
         {
             get
             {
-                int n = 0;
-                foreach (DrawForm frm in drwObj)
-                    if (frm.isSelected)
-                        n++;
-                return n;
+                return drwPlaces[index];
             }
         }
 
-        public DrawDoc()
+        public void AddObj(Place f)
         {
-            drwObj = new List<DrawForm>();
-        }
-
-        public DrawForm this[int index]
-        {
-            get
-            {
-                return drwObj[index];
-            }
-        }
-
-        public void AddObj(DrawForm f)
-        {
-            drwObj.Add(f);
+            drwPlaces.Add(f);
         }
 
         public void DrawAll(Graphics g)
         {
-            foreach (DrawForm frm in drwObj)
-                frm.Draw(g);
+            foreach (Place frm in drwPlaces)
+                frm.Draw(g, frm.isSelected);
         }
         
         public void Dispose()
         {
-            drwObj.Clear();
+            drwPlaces.Clear();
         }
 
         static int Distance(Point a, Point b)
@@ -141,38 +144,34 @@ namespace yugioh
         }
         public void Summon()
         {
-            for (int i = drwObj.Count - 1; i >= 0; i--)
-            {
-                DrawForm frm = drwObj[i];
-                if (frm.isSelected)
-                {
-                    RemoveSelected();
-                    
-                }
-            }
+            
         }
         public void RemoveSelected()
         {
-            var selList = drwObj.Where(w => w.isSelected).ToList();
-            foreach (DrawForm frm in selList)
-                drwObj.Remove(frm);
+            var selList = drwPlaces.Where(w => w.isSelected).ToList();
+            foreach (Place frm in selList)
+                drwPlaces.Remove(frm);
         }
         public bool Select(Point pos)
         {
-            for (int i = drwObj.Count - 1; i >= 0; i--)
+            for (int i = drwPlaces.Count - 1; i >= 0; i--)
             {
-                DrawForm frm = drwObj[i];
+                Place frm = drwPlaces[i];
+                if(drwPlaces[i].isSelected == true)
+                {
+                    drwPlaces[i].isSelected = false;
+                }
                 if (Distance(pos, frm.Position) < frm.Size / 2)
                 {
-                    frm.isSelected = !frm.isSelected;
-                    return true;
+                    drwPlaces[i].isSelected = !drwPlaces[i].isSelected;
+                //return true;
                 }
             }
             return false;
         }
         public void ChangeColorSelected(Color col)
         {
-            foreach (DrawForm frm in drwObj)
+            foreach (Place frm in drwPlaces)
                 if (frm.isSelected)
                     frm.Col = col;
         }

@@ -1,4 +1,6 @@
-﻿namespace yugioh
+﻿using System.Windows.Forms;
+
+namespace yugioh
 {
     partial class Form1
     {
@@ -56,6 +58,7 @@
             this.kocka2 = new System.Windows.Forms.PictureBox();
             this.kocka3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kocka1)).BeginInit();
@@ -328,6 +331,7 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(12, 8);
+           
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(471, 698);
             this.panel1.TabIndex = 20;
@@ -335,11 +339,22 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(489, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 60);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 710);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.kocka3);
             this.Controls.Add(this.kocka2);
@@ -391,6 +406,7 @@
         private System.Windows.Forms.Label Hearts;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox player2zivoti;
+        private System.Windows.Forms.Button button1;
     }
 }
 
