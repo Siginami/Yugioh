@@ -12,6 +12,7 @@ namespace yugioh
 {
     public partial class Form1 : Form
     {
+
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
         string whatsummon = "";//da se znae koj summon kje se pravi
@@ -45,6 +46,7 @@ namespace yugioh
         {
             InitializeComponent();
             docGrForms = new DrawDoc();
+
             /*Kocki kocka1 = new Kocki("Summon2", "Summon2", "Summon2", "Magic", "Move", "Move");
             Kocki kocka2 = new Kocki("Summon2", "Summon2", "Summon2", "Move", "Deffend", "Attack");
             Kocki kocka3 = new Kocki("Summon2", "Summon2", "Summon2", "Attack", "Attack", "Magic");
@@ -65,7 +67,13 @@ namespace yugioh
         {
 
         }
-        private void panel1_Paint(object sender, PaintEventArgs e)
+
+        public void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        public void generateGrid(object sender, PaintEventArgs e)
         {
             Graphics g = panel1.CreateGraphics();
             docGrForms.DrawAll(g);
@@ -76,25 +84,27 @@ namespace yugioh
             Pen p = new Pen(Color.Black);
             Point l = new Point();
             for (int x = 1; x <= numOfCells; ++x)
-            for (int y = 1; y <= numOfCol; ++y)
             {
-                l = new Point(x * (cellSize + 10), y * (cellSize + 10));
-                //g.DrawLine(p, 0, y * cellSize, numOfCells * cellSize, y * cellSize);
-                docGrForms.AddObj(new DrawForm(l, currentColor, cellSize));
+                for (int y = 1; y <= numOfCol; ++y)
+                {
+                    l = new Point(x * (cellSize + 10), y * (cellSize + 10));
+                    //g.DrawLine(p, 0, y * cellSize, numOfCells * cellSize, y * cellSize);
+                    docGrForms.AddObj(new DrawForm(l, currentColor, cellSize));
+
+                }
             }
         }
-
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                if (drawingMode)
-                    docGrForms.AddObj(new DrawForm(e.Location, currentColor, currentSize));
-                else if (docGrForms.OverSelectedObject(e.Location))
-                {
-                    moveClickPosition = e.Location;
-                    this.Cursor = Cursors.Hand;
-                }
+                //if (drawingMode)
+                //    docGrForms.AddObj(new DrawForm(e.Location, currentColor, currentSize));
+                //else if (docGrForms.OverSelectedObject(e.Location))
+                //{
+                //    moveClickPosition = e.Location;
+                //    this.Cursor = Cursors.Hand;
+                //}
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -108,15 +118,7 @@ namespace yugioh
             this.Cursor = Cursors.Default;
         }
 
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && !drawingMode)
-            {
-                docGrForms.MoveSelected(e.Location - (Size)moveClickPosition);
-                moveClickPosition = e.Location;
-                Invalidate(true);
-            }
-        }
+
 
         private string PresmetajValue(int randomizer, int randomzier2)
         {
@@ -516,13 +518,13 @@ namespace yugioh
             switch (kocka)
             {
                 case "Summon2":
-                    
+
                     break;
                 case "Summon3":
-                    
+
                     break;
                 case "Summon4":
-                    
+
                     break;
                 case "Move":
                     igrac.Move++;
@@ -553,17 +555,17 @@ namespace yugioh
 
         private void Canyousummon(string prvakocka, string vtorakocka, string tretakocka)
         {
-            if(prvakocka == "Summon2" && prvakocka == vtorakocka)
+            if (prvakocka == "Summon2" && prvakocka == vtorakocka)
             {
                 summon.Enabled = true;
                 whatsummon = "Summon2";
             }
-            else if(prvakocka == "Summon2" && prvakocka == tretakocka)
+            else if (prvakocka == "Summon2" && prvakocka == tretakocka)
             {
                 summon.Enabled = true;
                 whatsummon = "Summon2";
             }
-            else if(vtorakocka == "Summon2" && vtorakocka == tretakocka)
+            else if (vtorakocka == "Summon2" && vtorakocka == tretakocka)
             {
                 summon.Enabled = true;
                 whatsummon = "Summon2";
@@ -673,7 +675,14 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
+            docGrForms.Summon();
+            panel1.Refresh();
             summon.Enabled = false;
+        }
+
+        void Form1_Load(object sender, EventArgs e)
+        {
+            panel1.Refresh();
         }
     }
 }

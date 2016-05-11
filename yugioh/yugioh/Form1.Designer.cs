@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.player1zivoti = new System.Windows.Forms.TextBox();
+            this.Hearts = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.player1magic = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,6 +40,8 @@
             this.player1move = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.player2zivoti = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.player2magic = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,10 +56,6 @@
             this.kocka2 = new System.Windows.Forms.PictureBox();
             this.kocka3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Hearts = new System.Windows.Forms.Label();
-            this.player1zivoti = new System.Windows.Forms.TextBox();
-            this.player2zivoti = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kocka1)).BeginInit();
@@ -81,6 +81,23 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Player1";
+            // 
+            // player1zivoti
+            // 
+            this.player1zivoti.Location = new System.Drawing.Point(201, 248);
+            this.player1zivoti.Name = "player1zivoti";
+            this.player1zivoti.Size = new System.Drawing.Size(180, 20);
+            this.player1zivoti.TabIndex = 9;
+            this.player1zivoti.Text = "3";
+            // 
+            // Hearts
+            // 
+            this.Hearts.AutoSize = true;
+            this.Hearts.Location = new System.Drawing.Point(147, 251);
+            this.Hearts.Name = "Hearts";
+            this.Hearts.Size = new System.Drawing.Size(38, 13);
+            this.Hearts.TabIndex = 8;
+            this.Hearts.Text = "Hearts";
             // 
             // label4
             // 
@@ -173,6 +190,23 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Player2";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(147, 247);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Hearts";
+            // 
+            // player2zivoti
+            // 
+            this.player2zivoti.Location = new System.Drawing.Point(201, 244);
+            this.player2zivoti.Name = "player2zivoti";
+            this.player2zivoti.Size = new System.Drawing.Size(180, 20);
+            this.player2zivoti.TabIndex = 8;
+            this.player2zivoti.Text = "3";
             // 
             // label5
             // 
@@ -299,42 +333,7 @@
             this.panel1.TabIndex = 20;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
-            // 
-            // Hearts
-            // 
-            this.Hearts.AutoSize = true;
-            this.Hearts.Location = new System.Drawing.Point(147, 251);
-            this.Hearts.Name = "Hearts";
-            this.Hearts.Size = new System.Drawing.Size(38, 13);
-            this.Hearts.TabIndex = 8;
-            this.Hearts.Text = "Hearts";
-            // 
-            // player1zivoti
-            // 
-            this.player1zivoti.Location = new System.Drawing.Point(201, 248);
-            this.player1zivoti.Name = "player1zivoti";
-            this.player1zivoti.Size = new System.Drawing.Size(180, 20);
-            this.player1zivoti.TabIndex = 9;
-            this.player1zivoti.Text = "3";
-            // 
-            // player2zivoti
-            // 
-            this.player2zivoti.Location = new System.Drawing.Point(201, 244);
-            this.player2zivoti.Name = "player2zivoti";
-            this.player2zivoti.Size = new System.Drawing.Size(180, 20);
-            this.player2zivoti.TabIndex = 8;
-            this.player2zivoti.Text = "3";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(147, 247);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 13);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Hearts";
             // 
             // Form1
             // 
@@ -351,6 +350,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);

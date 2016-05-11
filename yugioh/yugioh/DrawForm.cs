@@ -15,7 +15,9 @@ namespace yugioh
         public int Size { get; set; }
 
         [NonSerialized]
-        public bool isSelected;
+        public bool isSelected = false;
+        public bool player1 = false;
+        public bool player2 = false;
 
         public int X
         {
@@ -40,7 +42,12 @@ namespace yugioh
         public DrawForm(DrawForm f) : this(f.Position, f.Col, f.Size, f.isSelected)
         {
         }
-
+        public DrawForm(Point p, bool player1, bool player2)
+        {
+            Position = p;
+            this.player1 = player1;
+            this.player2 = player2;
+        }
         public DrawForm(Point p, Color col, int size, bool sel = false)
         {
             Position = p;
@@ -57,14 +64,9 @@ namespace yugioh
 
         public void Move(int x, int y)
         {
-            Position.Offset(x, y);
-            Position = new Point(X + x, Y + y);
+            
         }
 
-        public void Move(Point m)
-        {
-            Position.Offset(m);
-        }
 
         public void Draw(Graphics g)
         {
@@ -76,7 +78,7 @@ namespace yugioh
             if (isSelected)
             {
                 Pen pn = new Pen(Color.Gray, 1);
-                boundRect.Inflate(10, 10);
+                boundRect.Inflate(7, 7);
                 g.DrawEllipse(pn, boundRect);
                 pn.Dispose();
             }
@@ -127,19 +129,7 @@ namespace yugioh
             foreach (DrawForm frm in drwObj)
                 frm.Draw(g);
         }
-
-        public void RemoveLast()
-        {
-            drwObj.RemoveAt(drwObj.Count - 1);
-        }
-
-        public void RemoveSelected()
-        {
-            var selList = drwObj.Where(w => w.isSelected).ToList();
-            foreach (DrawForm frm in selList)
-                drwObj.Remove(frm);
-        }
-
+        
         public void Dispose()
         {
             drwObj.Clear();
@@ -149,7 +139,24 @@ namespace yugioh
         {
             return (int)Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
         }
-
+        public void Summon()
+        {
+            for (int i = drwObj.Count - 1; i >= 0; i--)
+            {
+                DrawForm frm = drwObj[i];
+                if (frm.isSelected)
+                {
+                    RemoveSelected();
+                    
+                }
+            }
+        }
+        public void RemoveSelected()
+        {
+            var selList = drwObj.Where(w => w.isSelected).ToList();
+            foreach (DrawForm frm in selList)
+                drwObj.Remove(frm);
+        }
         public bool Select(Point pos)
         {
             for (int i = drwObj.Count - 1; i >= 0; i--)
@@ -163,67 +170,11 @@ namespace yugioh
             }
             return false;
         }
-
-        public void SelectAll(bool selection = true)
-        {
-            foreach (DrawForm frm in drwObj)
-                frm.isSelected = selection;
-        }
-
-        public bool OverSelectedObject(Point pos)
-        {
-            foreach (DrawForm frm in drwObj)
-                if (frm.isSelected && Distance(pos, frm.Position) < frm.Size / 2)
-                    return true;
-            return false;
-        }
-
-        public void MoveSelected(Point move)
-        {
-            foreach (DrawForm frm in drwObj)
-                if (frm.isSelected)
-                    frm.Move(move.X, move.Y);
-        }
-
-        public void ChangeSizeSelected(int size)
-        {
-            foreach (DrawForm frm in drwObj)
-                if (frm.isSelected)
-                    frm.Size = size;
-        }
-
         public void ChangeColorSelected(Color col)
         {
             foreach (DrawForm frm in drwObj)
                 if (frm.isSelected)
                     frm.Col = col;
-        }
-
-        public DrawDoc CopySelected()
-        {
-            DrawDoc ret = new DrawDoc();
-            foreach (DrawForm frm in drwObj)
-                if (frm.isSelected)
-                    ret.AddObj(new DrawForm(frm));
-            SelectAll(false);
-            return ret;
-        }
-
-        public DrawDoc CutSelected()
-        {
-            DrawDoc ret = new DrawDoc();
-            foreach (DrawForm frm in drwObj)
-                if (frm.isSelected)
-                    ret.AddObj(frm);
-            RemoveSelected();
-            return ret;
-        }
-
-        public void Paste(DrawDoc clip)
-        {
-            SelectAll(false);
-            for (int i = 0; i < clip.NumObjects; i++)
-                drwObj.Add(new DrawForm(clip[i]));
         }
     }
 }
