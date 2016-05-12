@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,6 @@ namespace yugioh
 {
     public partial class Form1 : Form
     {
-        
         public bool grid = false;
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
@@ -21,7 +21,7 @@ namespace yugioh
         bool flag = true;//dali e kliknato end turn prethodno ili ne
         static int Seed = (int)DateTime.Now.Ticks;
         Random brojce = new Random(Seed);
-        protected Grid docGrForms;
+        public static Grid formaGrid;
         protected Grid clipBoard = null;
         protected String FileName = null;
         protected Color currentColor = Color.Red;
@@ -43,13 +43,15 @@ namespace yugioh
         Kocki kocki13 = new Kocki("Summon3", "Summon3", "Attack", "Magic2", "Move", "Deffend2");
         Kocki kocki14 = new Kocki("Summon4", "Magic2", "Attack2", "Move2", "Deffend2", "Move3");
         Kocki kocki15 = new Kocki("Summon4", "Move2", "Magic2", "Deffend2", "Attack2", "Magic3");
+
         public Form1()
         {
             DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             InitializeComponent();
-            docGrForms = new Grid();
+            formaGrid = new Grid();
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -58,7 +60,7 @@ namespace yugioh
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = panel1.CreateGraphics();
-            docGrForms.DrawAll(g);
+            formaGrid.DrawAll(g);
             g.Dispose();
             int numOfCells = 13;
             int numOfCol = 19;
@@ -69,9 +71,6 @@ namespace yugioh
                 for (int y = 1; y <= numOfCol; ++y)
                 {
                     l = new Point(x * (cellSize + 10), y * (cellSize + 10));
-                    //g.DrawLine(p, 0, y * cellSize, numOfCells * cellSize, y * cellSize);
-                    //docGrForms.AddObj(new Place(l, currentColor, cellSize));
-
                 }
             }
         }
@@ -79,7 +78,7 @@ namespace yugioh
         public void generateGrid()
         {
             Graphics g = panel1.CreateGraphics();
-            docGrForms.DrawAll(g);
+            formaGrid.DrawAll(g);
             g.Dispose();
             int numOfCells = 13;
             int numOfCol = 19;
@@ -91,9 +90,8 @@ namespace yugioh
                 {
 
                     l = new Point(x * (cellSize + 10), y * (cellSize + 10));
-                    //g.DrawLine(p, 0, y * cellSize, numOfCells * cellSize, y * cellSize);
-                    docGrForms.AddObj(new Place(l, currentColor, cellSize));
-                    
+                    formaGrid.AddObj(new Place(l, currentColor, cellSize));
+
 
                 }
             }
@@ -102,17 +100,11 @@ namespace yugioh
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                //if (drawingMode)
-                //    docGrForms.AddObj(new Place(e.Location, currentColor, currentSize));
-                //else if (docGrForms.OverSelectedObject(e.Location))
-                //{
-                //    moveClickPosition = e.Location;
-                //    this.Cursor = Cursors.Hand;
-                //}
+
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                docGrForms.Select(e.Location);
+                formaGrid.Select(e.Location);
             }
             Invalidate(true);
         }
@@ -651,6 +643,8 @@ namespace yugioh
             }
             else
             {
+                generateGrid();
+                endturn.Text = "End Turn";
                 int randomizer = brojce.Next(1, 15);
                 int randomzier2 = brojce.Next(1, 6);
                 int randomizer3 = brojce.Next(1, 15);
@@ -679,7 +673,145 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
+            //Form2 odberikocka = new Form2();
+            tShapedSquares("right");
+            tShapedSquares("left");
+
+            tShapedSquares("up");
+            tShapedSquares("down");
+            panel1.Refresh();
             summon.Enabled = false;
+        }
+        public bool canTshape(string direction)
+        {
+            int startX = 0;
+            int startY = 0;
+            int colorX = 1;
+            int colorY = 0;
+            switch (direction)
+            {
+                case "up":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+                case "down":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "right":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "left":
+                    colorX = -35;
+                    colorY = 35;
+                    break;
+            }
+            for (int i = 0; i < formaGrid.NumObjects; i++)
+            {
+                if (formaGrid[i].isSelected)
+                {
+                    startX = formaGrid[i].X;
+                    startY = formaGrid[i].Y;
+                    startX -= 35;
+                    startY -= 35;
+                }
+
+            }
+            if (formaGrid[(startX / 35) * 19 + startY / 35].player1 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player1 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player1 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
+            formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true||
+            formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
+            formaGrid[(startX / 35) * 19 + startY / 35].player2 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player2 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player2 == true ||
+            formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
+            formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
+            formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true )
+            {
+                return false;
+            }
+            return true;
+        }
+        public void tShapedSquares(string direction)
+        {
+            int startX = 0;
+            int startY = 0;
+            int colorX = 1;
+            int colorY = 0;
+            switch (direction)
+            {
+                case "up":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+                case "down":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "right":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "left":
+                    colorX = -35;
+                    colorY = 35;
+                    break;
+            }
+            for (int i = 0; i < formaGrid.NumObjects; i++)
+            {
+                if (formaGrid[i].isSelected)
+                {
+                    startX = formaGrid[i].X;
+                    startY = formaGrid[i].Y;
+                    startX -= 35;
+                    startY -= 35;
+                }
+
+            }
+            if (!prvigrac)
+            {
+                if (direction == "up" || direction == "down")
+                {
+                    formaGrid[(startX / 35) * 19 + startY / 35].player1 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player1 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player1 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player1 = true;
+                    formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 = true;
+                    formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 = true;
+                }
+                else
+                {
+                    formaGrid[(startX / 35) * 19 + startY / 35].player1 = true;
+                    formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player1 = true;
+                    formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player1 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player1 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player1 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player1 = true;
+                }
+            } else if (prvigrac)
+            {
+                if (direction == "up" || direction == "down")
+                {
+                    formaGrid[(startX / 35) * 19 + startY / 35].player2 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player2 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player2 = true;
+                    formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player2 = true;
+                    formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 = true;
+                    formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 = true;
+                }
+                else
+                {
+                    formaGrid[(startX / 35) * 19 + startY / 35].player2 = true;
+                    formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player2 = true;
+                    formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player2 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player2 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player2 = true;
+                    formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player2 = true;
+                }
+            }
         }
 
         void Form1_Load(object sender, EventArgs e)
@@ -689,7 +821,7 @@ namespace yugioh
 
         private void button1_Click(object sender, EventArgs e)
         {
-            generateGrid();
+
         }
     }
 }

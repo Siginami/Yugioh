@@ -300,12 +300,13 @@ namespace yugioh
             this.endturn.Name = "endturn";
             this.endturn.Size = new System.Drawing.Size(113, 52);
             this.endturn.TabIndex = 16;
-            this.endturn.Text = "End Turn";
+            this.endturn.Text = "Start game";
             this.endturn.UseVisualStyleBackColor = true;
             this.endturn.Click += new System.EventHandler(this.endturn_Click);
             // 
             // kocka1
             // 
+            this.kocka1.BackColor = System.Drawing.SystemColors.Control;
             this.kocka1.Location = new System.Drawing.Point(608, 302);
             this.kocka1.Name = "kocka1";
             this.kocka1.Size = new System.Drawing.Size(100, 111);
@@ -331,7 +332,6 @@ namespace yugioh
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(12, 8);
-           
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(471, 698);
             this.panel1.TabIndex = 20;

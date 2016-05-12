@@ -19,6 +19,20 @@ namespace yugioh
         public bool player1 = false;
         public bool player2 = false;
 
+       
+
+        public bool isFree()
+        {
+            if(player1 || player2)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public int X
         {
             get
@@ -75,11 +89,21 @@ namespace yugioh
 
         public void Draw(Graphics g, bool isSelected)
         {
-            
-            Col = Color.Red;
+            if (isFree())
+            {
+                Col = Color.Red;
+            }
             if (isSelected)
             {
                 Col = Color.Black;
+            }
+            if (player1)
+            {
+                Col = Color.DarkSeaGreen;
+            }
+            if(player2)
+            {
+                Col = Color.Blue;
             }
             SolidBrush br = new SolidBrush(Col);
             Rectangle boundRect = new Rectangle(Position, new Size(this.Size, this.Size));
