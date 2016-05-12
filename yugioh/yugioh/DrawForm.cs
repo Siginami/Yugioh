@@ -20,7 +20,7 @@ namespace yugioh
         public bool player2 = false;
 
        
-
+        
         public bool isFree()
         {
             if(player1 || player2)
