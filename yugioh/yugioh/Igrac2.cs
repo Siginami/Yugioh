@@ -12,6 +12,7 @@ namespace yugioh
         public int Move = 0;
         public int Attack = 0;
         public int Deffend = 0;
+        public int Points = 0;
         public int Zivoti = 3;
     }
 }

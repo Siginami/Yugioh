@@ -18,6 +18,7 @@ namespace yugioh
         public bool isSelected = false;
         public bool player1 = false;
         public bool player2 = false;
+        public bool imapoen = false;
 
        
         
@@ -96,6 +97,10 @@ namespace yugioh
             if (isSelected)
             {
                 Col = Color.Black;
+            }
+            if (imapoen)
+            {
+                Col = Color.Yellow;
             }
             if (player1)
             {

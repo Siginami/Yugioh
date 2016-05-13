@@ -54,16 +54,15 @@ namespace yugioh
             this.label8 = new System.Windows.Forms.Label();
             this.summon = new System.Windows.Forms.Button();
             this.endturn = new System.Windows.Forms.Button();
-            this.kocka1 = new System.Windows.Forms.PictureBox();
-            this.kocka2 = new System.Windows.Forms.PictureBox();
-            this.kocka3 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tbkockaeden = new System.Windows.Forms.TextBox();
+            this.tbkockatri = new System.Windows.Forms.TextBox();
+            this.tbkockadva = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka3)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -92,6 +91,7 @@ namespace yugioh
             this.player1zivoti.Size = new System.Drawing.Size(180, 20);
             this.player1zivoti.TabIndex = 9;
             this.player1zivoti.Text = "3";
+            this.player1zivoti.TextChanged += new System.EventHandler(this.player1zivoti_TextChanged);
             // 
             // Hearts
             // 
@@ -304,31 +304,6 @@ namespace yugioh
             this.endturn.UseVisualStyleBackColor = true;
             this.endturn.Click += new System.EventHandler(this.endturn_Click);
             // 
-            // kocka1
-            // 
-            this.kocka1.BackColor = System.Drawing.SystemColors.Control;
-            this.kocka1.Location = new System.Drawing.Point(608, 302);
-            this.kocka1.Name = "kocka1";
-            this.kocka1.Size = new System.Drawing.Size(100, 111);
-            this.kocka1.TabIndex = 17;
-            this.kocka1.TabStop = false;
-            // 
-            // kocka2
-            // 
-            this.kocka2.Location = new System.Drawing.Point(714, 302);
-            this.kocka2.Name = "kocka2";
-            this.kocka2.Size = new System.Drawing.Size(100, 111);
-            this.kocka2.TabIndex = 18;
-            this.kocka2.TabStop = false;
-            // 
-            // kocka3
-            // 
-            this.kocka3.Location = new System.Drawing.Point(818, 302);
-            this.kocka3.Name = "kocka3";
-            this.kocka3.Size = new System.Drawing.Size(100, 111);
-            this.kocka3.TabIndex = 19;
-            this.kocka3.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(12, 8);
@@ -339,26 +314,67 @@ namespace yugioh
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // button1
+            // tbkockaeden
             // 
-            this.button1.Location = new System.Drawing.Point(489, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 60);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tbkockaeden.Location = new System.Drawing.Point(738, 294);
+            this.tbkockaeden.Name = "tbkockaeden";
+            this.tbkockaeden.Size = new System.Drawing.Size(180, 20);
+            this.tbkockaeden.TabIndex = 22;
+            // 
+            // tbkockatri
+            // 
+            this.tbkockatri.Location = new System.Drawing.Point(738, 404);
+            this.tbkockatri.Name = "tbkockatri";
+            this.tbkockatri.Size = new System.Drawing.Size(180, 20);
+            this.tbkockatri.TabIndex = 23;
+            // 
+            // tbkockadva
+            // 
+            this.tbkockadva.Location = new System.Drawing.Point(738, 349);
+            this.tbkockadva.Name = "tbkockadva";
+            this.tbkockadva.Size = new System.Drawing.Size(180, 20);
+            this.tbkockadva.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(687, 300);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Kocka1";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(690, 410);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Kocka3";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(687, 355);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Kocka2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 710);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.tbkockadva);
+            this.Controls.Add(this.tbkockatri);
+            this.Controls.Add(this.tbkockaeden);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.kocka3);
-            this.Controls.Add(this.kocka2);
-            this.Controls.Add(this.kocka1);
             this.Controls.Add(this.endturn);
             this.Controls.Add(this.summon);
             this.Controls.Add(this.groupBox3);
@@ -370,10 +386,8 @@ namespace yugioh
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kocka3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -398,15 +412,17 @@ namespace yugioh
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button summon;
         private System.Windows.Forms.Button endturn;
-        private System.Windows.Forms.PictureBox kocka1;
-        private System.Windows.Forms.PictureBox kocka2;
-        private System.Windows.Forms.PictureBox kocka3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox player1zivoti;
         private System.Windows.Forms.Label Hearts;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox player2zivoti;
-        private System.Windows.Forms.Button button1;
+        private TextBox tbkockaeden;
+        private TextBox tbkockatri;
+        private TextBox tbkockadva;
+        private Label label10;
+        private Label label11;
+        private Label label12;
     }
 }
 

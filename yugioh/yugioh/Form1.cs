@@ -99,6 +99,7 @@ namespace yugioh
                 }
             }
         }
+
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -117,8 +118,6 @@ namespace yugioh
         {
             this.Cursor = Cursors.Default;
         }
-
-
 
         private string PresmetajValue(int randomizer, int randomzier2)
         {
@@ -474,84 +473,45 @@ namespace yugioh
             return value;
         }
 
-        /*private void Najdislika(string kocka, PictureBox slika)
-        {
-            switch (kocka)
-            {
-                case "Summon2":
-                    slika.Image = Image.FromFile("‪");
-                    break;
-                case "Summon3":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Summon4":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Move":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Attack":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Deffend":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Magic":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Move2":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Attack2":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Deffend2":
-                    slika.Image = Image.FromFile("");
-                    break;
-                case "Magic2":
-                    slika.Image = Image.FromFile("");
-                    break;
-            }
-        }*/
-        private void PromeniValue(string kocka, Igrac2 igrac)
-        {
-            switch (kocka)
-            {
-                case "Summon2":
+        //private void PromeniValue(string kocka, Igrac2 igrac)
+        //{
+        //    switch (kocka)
+        //    {
+        //        case "Summon2":
 
-                    break;
-                case "Summon3":
+        //            break;
+        //        case "Summon3":
 
-                    break;
-                case "Summon4":
+        //            break;
+        //        case "Summon4":
 
-                    break;
-                case "Move":
-                    igrac.Move++;
-                    break;
-                case "Attack":
-                    igrac.Attack++;
-                    break;
-                case "Deffend":
-                    igrac.Deffend++;
-                    break;
-                case "Magic":
-                    igrac.Magic++;
-                    break;
-                case "Move2":
-                    igrac.Move += 2;
-                    break;
-                case "Attack2":
-                    igrac.Attack += 2;
-                    break;
-                case "Deffend2":
-                    igrac.Deffend += 2;
-                    break;
-                case "Magic2":
-                    igrac.Magic += 2;
-                    break;
-            }
-        }
+        //            break;
+        //        case "Move":
+        //            igrac.Move++;
+        //            break;
+        //        case "Attack":
+        //            igrac.Attack++;
+        //            break;
+        //        case "Deffend":
+        //            igrac.Deffend++;
+        //            break;
+        //        case "Magic":
+        //            igrac.Magic++;
+        //            break;
+        //        case "Move2":
+        //            igrac.Move += 2;
+        //            break;
+        //        case "Attack2":
+        //            igrac.Attack += 2;
+        //            break;
+        //        case "Deffend2":
+        //            igrac.Deffend += 2;
+        //            break;
+        //        case "Magic2":
+        //            igrac.Magic += 2;
+        //            break;
+        //    }
+        //}
 
         private void Canyousummon(string prvakocka, string vtorakocka, string tretakocka)
         {
@@ -604,8 +564,14 @@ namespace yugioh
 
         private void endturn_Click(object sender, EventArgs e)
         {
+            if (summon.Enabled)
+            {
+                summon.Enabled = false;
+            }
             if (!flag)
             {
+                int bonuspoen = brojce.Next(1, 247);
+                SpawnPoint(bonuspoen);
                 int randomizer = brojce.Next(1, 15);
                 int randomzier2 = brojce.Next(1, 6);
                 int randomizer3 = brojce.Next(1, 15);
@@ -615,33 +581,33 @@ namespace yugioh
                 string prvakocka = PresmetajValue(randomizer, randomzier2);
                 string vtorakocka = PresmetajValue(randomizer3, randomzier4);
                 string tretakocka = PresmetajValue(randomizer5, randomzier6);
-                /*Najdislika(prvakocka, kocka1);
-                Najdislika(vtorakocka, kocka2);
-                Najdislika(tretakocka, kocka3);*/
+                tbkockaeden.Text = prvakocka;
+                tbkockadva.Text = vtorakocka;
+                tbkockatri.Text = tretakocka;
                 if (prvigrac)
                 {
                     DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PromeniValue(prvakocka, igrac1);
-                    PromeniValue(vtorakocka, igrac1);
-                    PromeniValue(tretakocka, igrac1);
+                    //PromeniValue(prvakocka, igrac1);
+                    //PromeniValue(vtorakocka, igrac1);
+                    //PromeniValue(tretakocka, igrac1);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
-                    player1move.Text = igrac1.Move.ToString();
-                    player1attack.Text = igrac1.Attack.ToString();
-                    player1deffend.Text = igrac1.Deffend.ToString();
-                    player1magic.Text = igrac1.Magic.ToString();
+                    //player1move.Text = igrac1.Move.ToString();
+                    //player1attack.Text = igrac1.Attack.ToString();
+                    //player1deffend.Text = igrac1.Deffend.ToString();
+                    //player1magic.Text = igrac1.Magic.ToString();
                     prvigrac = false;
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PromeniValue(prvakocka, igrac2);
-                    PromeniValue(vtorakocka, igrac2);
-                    PromeniValue(tretakocka, igrac2);
+                    //PromeniValue(prvakocka, igrac2);
+                    //PromeniValue(vtorakocka, igrac2);
+                    //PromeniValue(tretakocka, igrac2);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
-                    player2move.Text = igrac2.Move.ToString();
-                    player2attack.Text = igrac2.Attack.ToString();
-                    player2deffend.Text = igrac2.Deffend.ToString();
-                    player2magic.Text = igrac2.Magic.ToString();
+                    //player2move.Text = igrac2.Move.ToString();
+                    //player2attack.Text = igrac2.Attack.ToString();
+                    //player2deffend.Text = igrac2.Deffend.ToString();
+                    //player2magic.Text = igrac2.Magic.ToString();
                     prvigrac = true;
                 }
             }
@@ -649,6 +615,8 @@ namespace yugioh
             {
                 generateGrid();
                 endturn.Text = "End Turn";
+                int bonuspoen = brojce.Next(1, 247);
+                SpawnPoint(bonuspoen);
                 int randomizer = brojce.Next(1, 15);
                 int randomzier2 = brojce.Next(1, 6);
                 int randomizer3 = brojce.Next(1, 15);
@@ -658,20 +626,21 @@ namespace yugioh
                 string prvakocka = PresmetajValue(randomizer, randomzier2);
                 string vtorakocka = PresmetajValue(randomizer3, randomzier4);
                 string tretakocka = PresmetajValue(randomizer5, randomzier6);
-                /*Najdislika(prvakocka, kocka1);
-                Najdislika(vtorakocka, kocka2);
-                Najdislika(tretakocka, kocka3);*/
+                tbkockaeden.Text = prvakocka;
+                tbkockadva.Text = vtorakocka;
+                tbkockatri.Text = tretakocka;
                 DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                PromeniValue(prvakocka, igrac1);
-                PromeniValue(vtorakocka, igrac1);
-                PromeniValue(tretakocka, igrac1);
+                //PromeniValue(prvakocka, igrac1);
+                //PromeniValue(vtorakocka, igrac1);
+                //PromeniValue(tretakocka, igrac1);
                 Canyousummon(prvakocka, vtorakocka, tretakocka);
-                player1move.Text = igrac1.Move.ToString();
-                player1attack.Text = igrac1.Attack.ToString();
-                player1deffend.Text = igrac1.Deffend.ToString();
-                player1magic.Text = igrac1.Magic.ToString();
+                //player1move.Text = igrac1.Move.ToString();
+                //player1attack.Text = igrac1.Attack.ToString();
+                //player1deffend.Text = igrac1.Deffend.ToString();
+                //player1magic.Text = igrac1.Magic.ToString();
                 prvigrac = false;
                 flag = false;
+                panel1.Refresh();
             }
         }
 
@@ -706,6 +675,43 @@ namespace yugioh
 
             panel1.Refresh();
             
+        }
+
+        public void SpawnPoint(int kade)
+        {
+            int promx = 0;
+            int promy = 0;
+            foreach(Place p in formaGrid.drwPlaces)
+            {
+                promx = p.X - 35;
+                promy = p.Y - 35;
+                //if (p.isFree())
+                //{
+                //    if ((promx / 35) * 19 + (promy / 35) == kade)
+                //    {
+                //        formaGrid[(promx / 35) * 19 + (promy / 35)].imapoen = true;
+                //        panel1.Refresh();
+                //    }
+                //}
+                //else
+                //{
+                //    kade = brojce.Next(1, 247);
+                //    SpawnPoint(kade);
+                //}
+                if((promx / 35) * 19 + (promy / 35) == kade)
+                {
+                    if (p.isFree())
+                    {
+                        formaGrid[(promx / 35) * 19 + (promy / 35)].imapoen = true;
+                        panel1.Refresh();
+                    }
+                    else
+                    {
+                        kade = brojce.Next(1, 247);
+                        SpawnPoint(kade);
+                    }
+                }
+            }
         }
 
         public ArrayList getTshape(Place start, string direction)
@@ -779,6 +785,7 @@ namespace yugioh
             return null;
 
         }
+
         public bool canTshape(string direction)
         {
             int startX = 0;
@@ -855,6 +862,7 @@ namespace yugioh
 
 
         }
+
         public void tShapedSquares(string direction)
         {
             int startX = 0;
@@ -952,7 +960,12 @@ namespace yugioh
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void player1zivoti_TextChanged(object sender, EventArgs e)
         {
 
         }
