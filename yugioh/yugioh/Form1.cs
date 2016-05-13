@@ -387,7 +387,7 @@ namespace yugioh
                     player2right.Enabled = false;
                     direction = "up";
                     prvigrac = false;
-                   
+
                 }
                 else
                 {
@@ -403,7 +403,7 @@ namespace yugioh
                     player1right.Enabled = false;
                     direction = "down";
                     prvigrac = true;
-                    
+
                 }
             }
             else
@@ -453,19 +453,19 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         public void SpawnPoint(int kade)
         {
             int promx = 0;
             int promy = 0;
-            foreach(Place p in formaGrid.drwPlaces)
+            foreach (Place p in formaGrid.drwPlaces)
             {
                 promx = p.X - 35;
                 promy = p.Y - 35;
-                if((promx / 35) * 19 + (promy / 35) == kade)
+                if ((promx / 35) * 19 + (promy / 35) == kade)
                 {
                     if (p.isFree())
                     {
@@ -527,26 +527,35 @@ namespace yugioh
             startX -= 35;
             startY -= 35;
             //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
-            if (direction == "right" || direction == "left")
+            try
             {
-                squares.Add(getIndexOfCube(startX, startY, 1, 0, colorX, colorY));
-                squares.Add(getIndexOfCube(startX, startY, 2, 0, colorX, colorY));
-                squares.Add(getIndexOfCube(startX, startY, 3, 0, colorX, colorY));
-                squares.Add(getIndexOfCube(startX, startY, 3, 1, colorX, colorY));
-                squares.Add(getIndexOfCube(startX, startY, 3, -1, colorX, colorY));
+
+                if (direction == "right" || direction == "left")
+                {
+                    squares.Add(getIndexOfCube(startX, startY, 1, 0, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 2, 0, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 3, 0, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 3, 1, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 3, -1, colorX, colorY));
+                }
+                else
+                {
+                    //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
+                    squares.Add(formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35]);
+                    squares.Add(formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35]);
+                    squares.Add(formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35]);
+                    squares.Add(formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
+                    squares.Add(formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
+                }
+                //return squares;
             }
-            else
+            catch (Exception e)
             {
-                //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
-                squares.Add(formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35]);
-                squares.Add(formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35]);
-                squares.Add(formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35]);
-                squares.Add(formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
-                squares.Add(formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
+                DialogResult result = MessageBox.Show("Неможеш да ја расклопиш коцката надвор од гридот", "Пази каде расклопуваш", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             return squares;
         }
-        
+
         //public bool canTshape(string direction)
         //{
         //    int startX = 0;
@@ -704,12 +713,13 @@ namespace yugioh
             }
             player1Array = new ArrayList();
             player2Array = new ArrayList();
-            foreach(Place p in formaGrid.drwPlaces)
+            foreach (Place p in formaGrid.drwPlaces)
             {
                 if (p.player1)
                 {
                     player1Array.Add(p);
-                } else if (p.player2)
+                }
+                else if (p.player2)
                 {
                     player2Array.Add(p);
                 }
@@ -810,7 +820,7 @@ namespace yugioh
                     DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else if(prvigrac == true && getSelectedPlace(direction).player2)
+            else if (prvigrac == true && getSelectedPlace(direction).player2)
             {
                 if (validateSummon(squares))
                 {
