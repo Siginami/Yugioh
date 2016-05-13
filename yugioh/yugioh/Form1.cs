@@ -763,22 +763,22 @@ namespace yugioh
             direction = "down";
         }
 
-        private void player2left_Click(object sender, EventArgs e)
+        private void player2left_Click_1(object sender, EventArgs e)
         {
             direction = "left";
         }
 
-        private void player2right_Click(object sender, EventArgs e)
+        private void player2right_Click_1(object sender, EventArgs e)
         {
             direction = "right";
         }
 
-        private void player2up_Click(object sender, EventArgs e)
+        private void player2up_Click_1(object sender, EventArgs e)
         {
             direction = "up";
         }
 
-        private void player2down_Click(object sender, EventArgs e)
+        private void player2down_Click_1(object sender, EventArgs e)
         {
             direction = "down";
         }
