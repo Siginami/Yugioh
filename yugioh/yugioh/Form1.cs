@@ -799,14 +799,31 @@ namespace yugioh
         {
             Place selected = getSelectedPlace(direction);
             ArrayList squares = getTshape(selected, direction);
-
-            if (validateSummon(squares))
+            if (prvigrac == false && getSelectedPlace(direction).player1 == true)
             {
-                button1.Enabled = false;
-                tShapedSquares(direction);
+                if (validateSummon(squares))
+                {
+                    button1.Enabled = false;
+                    tShapedSquares(direction);
+                }
+                else {
+                    DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else {
-                DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if(prvigrac == true && getSelectedPlace(direction).player2)
+            {
+                if (validateSummon(squares))
+                {
+                    button1.Enabled = false;
+                    tShapedSquares(direction);
+                }
+                else {
+                    DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Селектирајте ваша коцка", "Ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             player1poeni.Text = player1Points(squares).ToString();
             player2poeni.Text = player2Points(squares).ToString();

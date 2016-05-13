@@ -92,7 +92,7 @@ namespace yugioh
         {
             if (isFree())
             {
-                Col = Color.Red;
+                Col = Color.DarkSeaGreen;
             }
             if (isSelected)
             {
@@ -104,11 +104,11 @@ namespace yugioh
             }
             if (player1)
             {
-                Col = Color.DarkSeaGreen;
+                Col = Color.DarkRed;
             }
             if(player2)
             {
-                Col = Color.Blue;
+                Col = Color.DeepSkyBlue;
             }
             SolidBrush br = new SolidBrush(Col);
             Rectangle boundRect = new Rectangle(Position, new Size(this.Size, this.Size));
@@ -175,12 +175,7 @@ namespace yugioh
         {
             
         }
-        public void RemoveSelected()
-        {
-            var selList = drwPlaces.Where(w => w.isSelected).ToList();
-            foreach (Place frm in selList)
-                drwPlaces.Remove(frm);
-        }
+        
         public bool Select(Point pos)
         {
             for (int i = drwPlaces.Count - 1; i >= 0; i--)
