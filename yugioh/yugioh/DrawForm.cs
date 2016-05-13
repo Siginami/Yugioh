@@ -24,7 +24,7 @@ namespace yugioh
         
         public bool isFree()
         {
-            if(player1 || player2)
+            if(player1 || player2 || imapoen)
             {
                 return false;
             }

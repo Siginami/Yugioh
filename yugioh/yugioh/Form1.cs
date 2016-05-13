@@ -29,21 +29,15 @@ namespace yugioh
         protected Color currentColor = Color.Red;
         protected int currentSize = 10;
         protected Point moveClickPosition;
-        Kocki kocki1 = new Kocki("Summon2", "Summon2", "Summon2", "Magic", "Move", "Move");
-        Kocki kocki2 = new Kocki("Summon2", "Summon2", "Summon2", "Move", "Deffend", "Attack");
-        Kocki kocki3 = new Kocki("Summon2", "Summon2", "Summon2", "Attack", "Attack", "Magic");
-        Kocki kocki4 = new Kocki("Summon2", "Summon2", "Summon2", "Deffend", "Attack", "Magic");
-        Kocki kocki5 = new Kocki("Summon2", "Summon2", "Summon2", "Magic", "Magic", "Deffend");
-        Kocki kocki6 = new Kocki("Summon2", "Move", "Attack", "Magic", "Deffend", "Move2");
-        Kocki kocki7 = new Kocki("Summon2", "Move", "Magic", "Magic", "Deffend", "Deffend");
-        Kocki kocki8 = new Kocki("Summon2", "Attack", "Attack", "Magic", "Magic", "Deffend");
-        Kocki kocki9 = new Kocki("Summon2", "Summon2", "Summon2", "Attack", "Move", "Deffend");
-        Kocki kocki10 = new Kocki("Summon3", "Summon3", "Attack2", "Magic", "Move2", "Deffend");
-        Kocki kocki11 = new Kocki("Summon3", "Summon3", "Attack", "Magic", "Move2", "Deffend2");
-        Kocki kocki12 = new Kocki("Summon3", "Summon3", "Attack", "Magic2", "Move2", "Deffend");
-        Kocki kocki13 = new Kocki("Summon3", "Summon3", "Attack", "Magic2", "Move", "Deffend2");
-        Kocki kocki14 = new Kocki("Summon4", "Magic2", "Attack2", "Move2", "Deffend2", "Move3");
-        Kocki kocki15 = new Kocki("Summon4", "Move2", "Magic2", "Deffend2", "Attack2", "Magic3");
+        Kocki kocki1 = new Kocki("Summon2", "Summon2", "Summon2", "Summon2", "Summon2", "Summon2");
+        Kocki kocki2 = new Kocki("Summon3", "Summon3", "Summon3", "Summon3", "Summon3", "Summon3");
+        Kocki kocki3 = new Kocki("Summon4", "Summon4", "Summon4", "Summon4", "Summon4", "Summon4");
+        Kocki kocki4 = new Kocki("Summon2", "Summon4", "Summon3", "Summon2", "Summon4", "Summon2");
+        Kocki kocki5 = new Kocki("Summon3", "Summon2", "Summon3", "Summon4", "Summon2", "Summon2");
+        Kocki kocki6 = new Kocki("Summon2", "Summon4", "Summon3", "Summon3", "Summon2", "Summon3");
+        Kocki kocki7 = new Kocki("Summon3", "Summon2", "Summon3", "Summon3", "Summon4", "Summon4");
+        Kocki kocki8 = new Kocki("Summon2", "Summon3", "Summon4", "Summon2", "Summon4", "Summon4");
+        Kocki kocki9 = new Kocki("Summon4", "Summon4", "Summon4", "Summon3", "Summon2", "Summon3");
 
         public Form1()
         {
@@ -331,231 +325,23 @@ namespace yugioh
                             break;
                     }
                     break;
-                case 10:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki10.strana1;
-                            break;
-                        case 2:
-                            value = kocki10.strana2;
-                            break;
-                        case 3:
-                            value = kocki10.strana3;
-                            break;
-                        case 4:
-                            value = kocki10.strana4;
-                            break;
-                        case 5:
-                            value = kocki10.strana5;
-                            break;
-                        case 6:
-                            value = kocki10.strana6;
-                            break;
-                    }
-                    break;
-                case 11:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki11.strana1;
-                            break;
-                        case 2:
-                            value = kocki11.strana2;
-                            break;
-                        case 3:
-                            value = kocki11.strana3;
-                            break;
-                        case 4:
-                            value = kocki11.strana4;
-                            break;
-                        case 5:
-                            value = kocki11.strana5;
-                            break;
-                        case 6:
-                            value = kocki11.strana6;
-                            break;
-                    }
-                    break;
-                case 12:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki12.strana1;
-                            break;
-                        case 2:
-                            value = kocki12.strana2;
-                            break;
-                        case 3:
-                            value = kocki12.strana3;
-                            break;
-                        case 4:
-                            value = kocki12.strana4;
-                            break;
-                        case 5:
-                            value = kocki12.strana5;
-                            break;
-                        case 6:
-                            value = kocki12.strana6;
-                            break;
-                    }
-                    break;
-                case 13:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki13.strana1;
-                            break;
-                        case 2:
-                            value = kocki13.strana2;
-                            break;
-                        case 3:
-                            value = kocki13.strana3;
-                            break;
-                        case 4:
-                            value = kocki13.strana4;
-                            break;
-                        case 5:
-                            value = kocki13.strana5;
-                            break;
-                        case 6:
-                            value = kocki13.strana6;
-                            break;
-                    }
-                    break;
-                case 14:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki14.strana1;
-                            break;
-                        case 2:
-                            value = kocki14.strana2;
-                            break;
-                        case 3:
-                            value = kocki14.strana3;
-                            break;
-                        case 4:
-                            value = kocki14.strana4;
-                            break;
-                        case 5:
-                            value = kocki14.strana5;
-                            break;
-                        case 6:
-                            value = kocki14.strana6;
-                            break;
-                    }
-                    break;
-                case 15:
-                    switch (randomzier2)
-                    {
-                        case 1:
-                            value = kocki15.strana1;
-                            break;
-                        case 2:
-                            value = kocki15.strana2;
-                            break;
-                        case 3:
-                            value = kocki15.strana3;
-                            break;
-                        case 4:
-                            value = kocki15.strana4;
-                            break;
-                        case 5:
-                            value = kocki15.strana5;
-                            break;
-                        case 6:
-                            value = kocki15.strana6;
-                            break;
-                    }
-                    break;
             }
             return value;
         }
 
-        //private void PromeniValue(string kocka, Igrac2 igrac)
-        //{
-        //    switch (kocka)
-        //    {
-        //        case "Summon2":
-
-        //            break;
-        //        case "Summon3":
-
-        //            break;
-        //        case "Summon4":
-
-        //            break;
-        //        case "Move":
-        //            igrac.Move++;
-        //            break;
-        //        case "Attack":
-        //            igrac.Attack++;
-        //            break;
-        //        case "Deffend":
-        //            igrac.Deffend++;
-        //            break;
-        //        case "Magic":
-        //            igrac.Magic++;
-        //            break;
-        //        case "Move2":
-        //            igrac.Move += 2;
-        //            break;
-        //        case "Attack2":
-        //            igrac.Attack += 2;
-        //            break;
-        //        case "Deffend2":
-        //            igrac.Deffend += 2;
-        //            break;
-        //        case "Magic2":
-        //            igrac.Magic += 2;
-        //            break;
-        //    }
-        //}
-
         private void Canyousummon(string prvakocka, string vtorakocka, string tretakocka)
         {
-            if (prvakocka == "Summon2" && prvakocka == vtorakocka)
+            if (prvakocka == vtorakocka && prvakocka == tretakocka && prvakocka == "Summon2")
             {
                 summon.Enabled = true;
                 whatsummon = "Summon2";
             }
-            else if (prvakocka == "Summon2" && prvakocka == tretakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon2";
-            }
-            else if (vtorakocka == "Summon2" && vtorakocka == tretakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon2";
-            }
-            else if (prvakocka == "Summon3" && prvakocka == vtorakocka)
+            else if (prvakocka == "Summon3" && prvakocka == vtorakocka && prvakocka == tretakocka)
             {
                 summon.Enabled = true;
                 whatsummon = "Summon3";
             }
-            else if (prvakocka == "Summon3" && prvakocka == tretakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon3";
-            }
-            else if (vtorakocka == "Summon3" && vtorakocka == tretakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon3";
-            }
-            else if (prvakocka == "Summon4" && prvakocka == vtorakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon4";
-            }
-            else if (prvakocka == "Summon4" && prvakocka == tretakocka)
-            {
-                summon.Enabled = true;
-                whatsummon = "Summon4";
-            }
-            else if (vtorakocka == "Summon4" && vtorakocka == tretakocka)
+            else if (prvakocka == "Summon4" && prvakocka == vtorakocka && prvakocka == tretakocka)
             {
                 summon.Enabled = true;
                 whatsummon = "Summon4";
@@ -572,11 +358,11 @@ namespace yugioh
             {
                 int bonuspoen = brojce.Next(1, 247);
                 SpawnPoint(bonuspoen);
-                int randomizer = brojce.Next(1, 15);
+                int randomizer = brojce.Next(1, 9);
                 int randomzier2 = brojce.Next(1, 6);
-                int randomizer3 = brojce.Next(1, 15);
+                int randomizer3 = brojce.Next(1, 9);
                 int randomzier4 = brojce.Next(1, 6);
-                int randomizer5 = brojce.Next(1, 15);
+                int randomizer5 = brojce.Next(1, 9);
                 int randomzier6 = brojce.Next(1, 6);
                 string prvakocka = PresmetajValue(randomizer, randomzier2);
                 string vtorakocka = PresmetajValue(randomizer3, randomzier4);
@@ -587,27 +373,13 @@ namespace yugioh
                 if (prvigrac)
                 {
                     DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //PromeniValue(prvakocka, igrac1);
-                    //PromeniValue(vtorakocka, igrac1);
-                    //PromeniValue(tretakocka, igrac1);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
-                    //player1move.Text = igrac1.Move.ToString();
-                    //player1attack.Text = igrac1.Attack.ToString();
-                    //player1deffend.Text = igrac1.Deffend.ToString();
-                    //player1magic.Text = igrac1.Magic.ToString();
                     prvigrac = false;
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //PromeniValue(prvakocka, igrac2);
-                    //PromeniValue(vtorakocka, igrac2);
-                    //PromeniValue(tretakocka, igrac2);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
-                    //player2move.Text = igrac2.Move.ToString();
-                    //player2attack.Text = igrac2.Attack.ToString();
-                    //player2deffend.Text = igrac2.Deffend.ToString();
-                    //player2magic.Text = igrac2.Magic.ToString();
                     prvigrac = true;
                 }
             }
@@ -617,11 +389,11 @@ namespace yugioh
                 endturn.Text = "End Turn";
                 int bonuspoen = brojce.Next(1, 247);
                 SpawnPoint(bonuspoen);
-                int randomizer = brojce.Next(1, 15);
+                int randomizer = brojce.Next(1, 9);
                 int randomzier2 = brojce.Next(1, 6);
-                int randomizer3 = brojce.Next(1, 15);
+                int randomizer3 = brojce.Next(1, 9);
                 int randomzier4 = brojce.Next(1, 6);
-                int randomizer5 = brojce.Next(1, 15);
+                int randomizer5 = brojce.Next(1, 9);
                 int randomzier6 = brojce.Next(1, 6);
                 string prvakocka = PresmetajValue(randomizer, randomzier2);
                 string vtorakocka = PresmetajValue(randomizer3, randomzier4);
@@ -630,14 +402,7 @@ namespace yugioh
                 tbkockadva.Text = vtorakocka;
                 tbkockatri.Text = tretakocka;
                 DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //PromeniValue(prvakocka, igrac1);
-                //PromeniValue(vtorakocka, igrac1);
-                //PromeniValue(tretakocka, igrac1);
                 Canyousummon(prvakocka, vtorakocka, tretakocka);
-                //player1move.Text = igrac1.Move.ToString();
-                //player1attack.Text = igrac1.Attack.ToString();
-                //player1deffend.Text = igrac1.Deffend.ToString();
-                //player1magic.Text = igrac1.Magic.ToString();
                 prvigrac = false;
                 flag = false;
                 panel1.Refresh();
@@ -685,19 +450,6 @@ namespace yugioh
             {
                 promx = p.X - 35;
                 promy = p.Y - 35;
-                //if (p.isFree())
-                //{
-                //    if ((promx / 35) * 19 + (promy / 35) == kade)
-                //    {
-                //        formaGrid[(promx / 35) * 19 + (promy / 35)].imapoen = true;
-                //        panel1.Refresh();
-                //    }
-                //}
-                //else
-                //{
-                //    kade = brojce.Next(1, 247);
-                //    SpawnPoint(kade);
-                //}
                 if((promx / 35) * 19 + (promy / 35) == kade)
                 {
                     if (p.isFree())
