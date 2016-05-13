@@ -14,7 +14,7 @@ namespace yugioh
     public partial class Form1 : Form
     {
         public bool grid = false;
-        string direction = "";
+        string direction = "up";
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
         string whatsummon = "";//da se znae koj summon kje se pravi
@@ -27,7 +27,7 @@ namespace yugioh
         public ArrayList player2Array;
         protected Grid clipBoard = null;
         protected String FileName = null;
-        protected Color currentColor = Color.Red;
+        protected Color currentColor = Color.LightYellow;
         protected int currentSize = 10;
         protected Point moveClickPosition;
         Kocki kocki1 = new Kocki("Summon2", "Summon2", "Summon2", "Summon2", "Summon2", "Summon2");
@@ -93,18 +93,19 @@ namespace yugioh
 
                 }
             }
+            formaGrid[132].player1 = true;
+            formaGrid[114].player2 = true;
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-
+                formaGrid.Select(e.Location);
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 formaGrid.Select(e.Location);
-
             }
             Invalidate(true);
         }
@@ -351,6 +352,7 @@ namespace yugioh
 
         private void endturn_Click(object sender, EventArgs e)
         {
+            button1.Enabled = true;
             if (summon.Enabled)
             {
                 summon.Enabled = false;
@@ -383,7 +385,9 @@ namespace yugioh
                     player2up.Enabled = false;
                     player2left.Enabled = false;
                     player2right.Enabled = false;
+                    direction = "up";
                     prvigrac = false;
+                   
                 }
                 else
                 {
@@ -397,7 +401,9 @@ namespace yugioh
                     player1up.Enabled = false;
                     player1left.Enabled = false;
                     player1right.Enabled = false;
+                    direction = "down";
                     prvigrac = true;
+                    
                 }
             }
             else
@@ -447,19 +453,7 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
-            //string direction = "left";
-            Place selected = getSelectedPlace(direction);
-            ArrayList squares = getTshape(selected, direction);
-           
-            if (validateSummon(squares))
-            {
-                summon.Enabled = false;
-                tShapedSquares(direction);
-            } else {
-                DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            panel1.Refresh();
+            
             
         }
 
@@ -485,6 +479,23 @@ namespace yugioh
                     }
                 }
             }
+        }
+
+        public Place getIndexOfCube(int x, int y, int mX, int mY, int cX, int cY)
+        {
+            return formaGrid[((x + (mX * cX)) / 35) * 19 + (y + (mY * cY)) / 35];
+        }
+
+        public Place getSelectedPlace(string direction)
+        {
+            for (int i = 0; i < formaGrid.NumObjects; i++)
+            {
+                if (formaGrid[i].isSelected)
+                {
+                    return formaGrid[i];
+                }
+            }
+            return null;
         }
 
         public ArrayList getTshape(Place start, string direction)
@@ -518,19 +529,15 @@ namespace yugioh
             //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
             if (direction == "right" || direction == "left")
             {
-                //squares.Add(formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35]);
-                //squares.Add(formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35]);
-                //squares.Add(formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35]);
-                //squares.Add(formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35]);
-                //squares.Add(formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35]);
                 squares.Add(getIndexOfCube(startX, startY, 1, 0, colorX, colorY));
                 squares.Add(getIndexOfCube(startX, startY, 2, 0, colorX, colorY));
                 squares.Add(getIndexOfCube(startX, startY, 3, 0, colorX, colorY));
                 squares.Add(getIndexOfCube(startX, startY, 3, 1, colorX, colorY));
                 squares.Add(getIndexOfCube(startX, startY, 3, -1, colorX, colorY));
-            } else
+            }
+            else
             {
-                squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
+                //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
                 squares.Add(formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35]);
                 squares.Add(formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35]);
                 squares.Add(formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35]);
@@ -539,102 +546,83 @@ namespace yugioh
             }
             return squares;
         }
+        
+        //public bool canTshape(string direction)
+        //{
+        //    int startX = 0;
+        //    int startY = 0;
+        //    int colorX = 1;
+        //    int colorY = 0;
+        //    switch (direction)
+        //    {
+        //        case "up":
+        //            colorX = 35;
+        //            colorY = -35;
+        //            break;
+        //        case "down":
+        //            colorX = 35;
+        //            colorY = 35;
+        //            break;
+        //        case "right":
+        //            colorX = 35;
+        //            colorY = 35;
+        //            break;
+        //        case "left":
+        //            colorX = -35;
+        //            colorY = 35;
+        //            break;
+        //    }
+        //    for (int i = 0; i < formaGrid.NumObjects; i++)
+        //    {
+        //        if (formaGrid[i].isSelected)
+        //        {
+        //            startX = formaGrid[i].X;
+        //            startY = formaGrid[i].Y;
+        //            startX -= 35;
+        //            startY -= 35;
+        //        }
 
-        public Place getIndexOfCube(int x, int y, int mX, int mY, int cX, int cY)
-        {
-            return formaGrid[((x + (mX * cX)) / 35) * 19 + (y + (mY * cY)) / 35];
-        }
-
-        public Place getSelectedPlace(string direction)
-
-        {
-            for (int i = 0; i < formaGrid.NumObjects; i++)
-            {
-                if (formaGrid[i].isSelected)
-                {
-                    return formaGrid[i];
-                }
-            }
-            return null;
-
-        }
-
-        public bool canTshape(string direction)
-        {
-            int startX = 0;
-            int startY = 0;
-            int colorX = 1;
-            int colorY = 0;
-            switch (direction)
-            {
-                case "up":
-                    colorX = 35;
-                    colorY = -35;
-                    break;
-                case "down":
-                    colorX = 35;
-                    colorY = 35;
-                    break;
-                case "right":
-                    colorX = 35;
-                    colorY = 35;
-                    break;
-                case "left":
-                    colorX = -35;
-                    colorY = 35;
-                    break;
-            }
-            for (int i = 0; i < formaGrid.NumObjects; i++)
-            {
-                if (formaGrid[i].isSelected)
-                {
-                    startX = formaGrid[i].X;
-                    startY = formaGrid[i].Y;
-                    startX -= 35;
-                    startY -= 35;
-                }
-
-            }
-            if (direction == "up" || direction == "down")
-            {
-                if (formaGrid[(startX / 35) * 19 + startY / 35].player1 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX / 35) * 19 + startY / 35].player2 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player2 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player2 == true ||
-                formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
-                formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
-                formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (formaGrid[(startX / 35) * 19 + startY / 35].player1 == true ||
-                formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
-                formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player1 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player1 == true ||
-                formaGrid[(startX / 35) * 19 + startY / 35].player2 == true ||
-                formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
-                formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player2 == true ||
-                formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player2 == true)
-                {
-                    return false;
-                }
-            }
-            return true;
+        //    }
+        //    if (direction == "up" || direction == "down")
+        //    {
+        //        if (formaGrid[(startX / 35) * 19 + startY / 35].player1 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX / 35) * 19 + startY / 35].player2 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (1 * colorY)) / 35].player2 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (2 * colorY)) / 35].player2 == true ||
+        //        formaGrid[(startX / 35) * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
+        //        formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true ||
+        //        formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35].player2 == true)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (formaGrid[(startX / 35) * 19 + startY / 35].player1 == true ||
+        //        formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
+        //        formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player1 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player1 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player1 == true ||
+        //        formaGrid[(startX / 35) * 19 + startY / 35].player2 == true ||
+        //        formaGrid[((startX + (1 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
+        //        formaGrid[((startX + (2 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + startY / 35].player2 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY + (1 * colorY)) / 35].player2 == true ||
+        //        formaGrid[((startX + (3 * colorX)) / 35) * 19 + (startY - (1 * colorY)) / 35].player2 == true)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
 
 
-        }
+        //}
 
         public void tShapedSquares(string direction)
         {
@@ -743,6 +731,30 @@ namespace yugioh
 
         }
 
+        public int player1Points(ArrayList squares)
+        {
+            foreach (Place p in squares)
+            {
+                if (p.imapoen == true && p.player1 == true)
+                {
+                    igrac1.Points++;
+                }
+            }
+            return igrac1.Points;
+        }
+
+        public int player2Points(ArrayList squares)
+        {
+            foreach (Place p in squares)
+            {
+                if (p.imapoen == true && p.player2 == true)
+                {
+                    igrac2.Points++;
+                }
+            }
+            return igrac2.Points;
+        }
+
         private void player1left_Click(object sender, EventArgs e)
         {
             direction = "left";
@@ -781,6 +793,24 @@ namespace yugioh
         private void player2down_Click_1(object sender, EventArgs e)
         {
             direction = "down";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Place selected = getSelectedPlace(direction);
+            ArrayList squares = getTshape(selected, direction);
+
+            if (validateSummon(squares))
+            {
+                button1.Enabled = false;
+                tShapedSquares(direction);
+            }
+            else {
+                DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            player1poeni.Text = player1Points(squares).ToString();
+            player2poeni.Text = player2Points(squares).ToString();
+            panel1.Refresh();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace yugioh
             this.player1right = new System.Windows.Forms.Button();
             this.player1left = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.player1zivoti = new System.Windows.Forms.TextBox();
+            this.player1poeni = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.player2down = new System.Windows.Forms.Button();
             this.player2up = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@ namespace yugioh
             this.player2right = new System.Windows.Forms.Button();
             this.player2left = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.player2zivoti = new System.Windows.Forms.TextBox();
+            this.player2poeni = new System.Windows.Forms.TextBox();
             this.summon = new System.Windows.Forms.Button();
             this.endturn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,6 +55,7 @@ namespace yugioh
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +68,7 @@ namespace yugioh
             this.groupBox2.Controls.Add(this.player1right);
             this.groupBox2.Controls.Add(this.player1left);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.player1zivoti);
+            this.groupBox2.Controls.Add(this.player1poeni);
             this.groupBox2.Location = new System.Drawing.Point(537, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(387, 275);
@@ -133,14 +134,15 @@ namespace yugioh
             this.label1.TabIndex = 10;
             this.label1.Text = "Points";
             // 
-            // player1zivoti
+            // player1poeni
             // 
-            this.player1zivoti.Location = new System.Drawing.Point(201, 19);
-            this.player1zivoti.Name = "player1zivoti";
-            this.player1zivoti.Size = new System.Drawing.Size(180, 20);
-            this.player1zivoti.TabIndex = 9;
-            this.player1zivoti.Text = "0";
-            this.player1zivoti.TextChanged += new System.EventHandler(this.player1zivoti_TextChanged);
+            this.player1poeni.Location = new System.Drawing.Point(201, 19);
+            this.player1poeni.Name = "player1poeni";
+            this.player1poeni.ReadOnly = true;
+            this.player1poeni.Size = new System.Drawing.Size(180, 20);
+            this.player1poeni.TabIndex = 9;
+            this.player1poeni.Text = "0";
+            this.player1poeni.TextChanged += new System.EventHandler(this.player1zivoti_TextChanged);
             // 
             // groupBox3
             // 
@@ -150,7 +152,7 @@ namespace yugioh
             this.groupBox3.Controls.Add(this.player2right);
             this.groupBox3.Controls.Add(this.player2left);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.player2zivoti);
+            this.groupBox3.Controls.Add(this.player2poeni);
             this.groupBox3.Location = new System.Drawing.Point(537, 431);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(387, 275);
@@ -216,20 +218,21 @@ namespace yugioh
             this.label9.TabIndex = 9;
             this.label9.Text = "Points";
             // 
-            // player2zivoti
+            // player2poeni
             // 
-            this.player2zivoti.Location = new System.Drawing.Point(207, 19);
-            this.player2zivoti.Name = "player2zivoti";
-            this.player2zivoti.Size = new System.Drawing.Size(180, 20);
-            this.player2zivoti.TabIndex = 8;
-            this.player2zivoti.Text = "0";
+            this.player2poeni.Location = new System.Drawing.Point(207, 19);
+            this.player2poeni.Name = "player2poeni";
+            this.player2poeni.ReadOnly = true;
+            this.player2poeni.Size = new System.Drawing.Size(180, 20);
+            this.player2poeni.TabIndex = 8;
+            this.player2poeni.Text = "0";
             // 
             // summon
             // 
             this.summon.Enabled = false;
-            this.summon.Location = new System.Drawing.Point(489, 302);
+            this.summon.Location = new System.Drawing.Point(608, 335);
             this.summon.Name = "summon";
-            this.summon.Size = new System.Drawing.Size(113, 52);
+            this.summon.Size = new System.Drawing.Size(73, 52);
             this.summon.TabIndex = 15;
             this.summon.Text = "Summon";
             this.summon.UseVisualStyleBackColor = true;
@@ -259,6 +262,7 @@ namespace yugioh
             // 
             this.tbkockaeden.Location = new System.Drawing.Point(738, 294);
             this.tbkockaeden.Name = "tbkockaeden";
+            this.tbkockaeden.ReadOnly = true;
             this.tbkockaeden.Size = new System.Drawing.Size(180, 20);
             this.tbkockaeden.TabIndex = 22;
             // 
@@ -266,6 +270,7 @@ namespace yugioh
             // 
             this.tbkockatri.Location = new System.Drawing.Point(738, 404);
             this.tbkockatri.Name = "tbkockatri";
+            this.tbkockatri.ReadOnly = true;
             this.tbkockatri.Size = new System.Drawing.Size(180, 20);
             this.tbkockatri.TabIndex = 23;
             // 
@@ -273,6 +278,7 @@ namespace yugioh
             // 
             this.tbkockadva.Location = new System.Drawing.Point(738, 349);
             this.tbkockadva.Name = "tbkockadva";
+            this.tbkockadva.ReadOnly = true;
             this.tbkockadva.Size = new System.Drawing.Size(180, 20);
             this.tbkockadva.TabIndex = 24;
             // 
@@ -304,12 +310,23 @@ namespace yugioh
             this.label12.TabIndex = 27;
             this.label12.Text = "Kocka2";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(489, 300);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 55);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Summon T shape";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.endturn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 710);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -339,9 +356,9 @@ namespace yugioh
         private System.Windows.Forms.Button summon;
         private System.Windows.Forms.Button endturn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox player1zivoti;
+        private System.Windows.Forms.TextBox player1poeni;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox player2zivoti;
+        private System.Windows.Forms.TextBox player2poeni;
         private TextBox tbkockaeden;
         private TextBox tbkockatri;
         private TextBox tbkockadva;
@@ -359,6 +376,7 @@ namespace yugioh
         private Label label3;
         private Button player2right;
         private Button player2left;
+        private Button button1;
     }
 }
 
