@@ -14,6 +14,7 @@ namespace yugioh
     public partial class Form1 : Form
     {
         public bool grid = false;
+        string direction = "";
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
         string whatsummon = "";//da se znae koj summon kje se pravi
@@ -374,12 +375,28 @@ namespace yugioh
                 {
                     DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
+                    player1left.Enabled = true;
+                    player1down.Enabled = true;
+                    player1right.Enabled = true;
+                    player1up.Enabled = true;
+                    player2down.Enabled = false;
+                    player2up.Enabled = false;
+                    player2left.Enabled = false;
+                    player2right.Enabled = false;
                     prvigrac = false;
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Player 2 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Canyousummon(prvakocka, vtorakocka, tretakocka);
+                    player2left.Enabled = true;
+                    player2down.Enabled = true;
+                    player2right.Enabled = true;
+                    player2up.Enabled = true;
+                    player1down.Enabled = false;
+                    player1up.Enabled = false;
+                    player1left.Enabled = false;
+                    player1right.Enabled = false;
                     prvigrac = true;
                 }
             }
@@ -403,6 +420,10 @@ namespace yugioh
                 tbkockatri.Text = tretakocka;
                 DialogResult result = MessageBox.Show("Player 1 move", "Whose turn is it", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Canyousummon(prvakocka, vtorakocka, tretakocka);
+                player2down.Enabled = false;
+                player2up.Enabled = false;
+                player2left.Enabled = false;
+                player2right.Enabled = false;
                 prvigrac = false;
                 flag = false;
                 panel1.Refresh();
@@ -426,7 +447,7 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
-            string direction = "left";
+            //string direction = "left";
             Place selected = getSelectedPlace(direction);
             ArrayList squares = getTshape(selected, direction);
            
@@ -720,6 +741,46 @@ namespace yugioh
         private void player1zivoti_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void player1left_Click(object sender, EventArgs e)
+        {
+            direction = "left";
+        }
+
+        private void player1right_Click(object sender, EventArgs e)
+        {
+            direction = "right";
+        }
+
+        private void player1up_Click(object sender, EventArgs e)
+        {
+            direction = "up";
+        }
+
+        private void player1down_Click(object sender, EventArgs e)
+        {
+            direction = "down";
+        }
+
+        private void player2left_Click(object sender, EventArgs e)
+        {
+            direction = "left";
+        }
+
+        private void player2right_Click(object sender, EventArgs e)
+        {
+            direction = "right";
+        }
+
+        private void player2up_Click(object sender, EventArgs e)
+        {
+            direction = "up";
+        }
+
+        private void player2down_Click(object sender, EventArgs e)
+        {
+            direction = "down";
         }
     }
 }

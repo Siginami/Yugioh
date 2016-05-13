@@ -31,6 +31,7 @@ namespace yugioh
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.player1zivoti = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -44,13 +45,27 @@ namespace yugioh
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.player1left = new System.Windows.Forms.Button();
+            this.player1right = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.player1up = new System.Windows.Forms.Button();
+            this.player1down = new System.Windows.Forms.Button();
+            this.player2down = new System.Windows.Forms.Button();
+            this.player2up = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.player2right = new System.Windows.Forms.Button();
+            this.player2left = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.player1down);
+            this.groupBox2.Controls.Add(this.player1up);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.player1right);
+            this.groupBox2.Controls.Add(this.player1left);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.player1zivoti);
             this.groupBox2.Location = new System.Drawing.Point(537, 13);
@@ -59,6 +74,15 @@ namespace yugioh
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Player1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(146, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Points";
             // 
             // player1zivoti
             // 
@@ -71,6 +95,11 @@ namespace yugioh
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.player2down);
+            this.groupBox3.Controls.Add(this.player2up);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.player2right);
+            this.groupBox3.Controls.Add(this.player2left);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.player2zivoti);
             this.groupBox3.Location = new System.Drawing.Point(537, 431);
@@ -177,17 +206,103 @@ namespace yugioh
             this.label12.TabIndex = 27;
             this.label12.Text = "Kocka2";
             // 
-            // label1
+            // player1left
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(146, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Points";
+            this.player1left.Location = new System.Drawing.Point(7, 80);
+            this.player1left.Name = "player1left";
+            this.player1left.Size = new System.Drawing.Size(185, 25);
+            this.player1left.TabIndex = 11;
+            this.player1left.Text = "Лево";
+            this.player1left.UseVisualStyleBackColor = true;
+            this.player1left.Click += new System.EventHandler(this.player1left_Click);
+            // 
+            // player1right
+            // 
+            this.player1right.Location = new System.Drawing.Point(196, 80);
+            this.player1right.Name = "player1right";
+            this.player1right.Size = new System.Drawing.Size(185, 25);
+            this.player1right.TabIndex = 12;
+            this.player1right.Text = "Десно";
+            this.player1right.UseVisualStyleBackColor = true;
+            this.player1right.Click += new System.EventHandler(this.player1right_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Избери ориентација:";
+            // 
+            // player1up
+            // 
+            this.player1up.Location = new System.Drawing.Point(7, 127);
+            this.player1up.Name = "player1up";
+            this.player1up.Size = new System.Drawing.Size(185, 25);
+            this.player1up.TabIndex = 14;
+            this.player1up.Text = "Горе";
+            this.player1up.UseVisualStyleBackColor = true;
+            this.player1up.Click += new System.EventHandler(this.player1up_Click);
+            // 
+            // player1down
+            // 
+            this.player1down.Location = new System.Drawing.Point(196, 127);
+            this.player1down.Name = "player1down";
+            this.player1down.Size = new System.Drawing.Size(185, 25);
+            this.player1down.TabIndex = 15;
+            this.player1down.Text = "Доле";
+            this.player1down.UseVisualStyleBackColor = true;
+            this.player1down.Click += new System.EventHandler(this.player1down_Click);
+            // 
+            // player2down
+            // 
+            this.player2down.Location = new System.Drawing.Point(196, 128);
+            this.player2down.Name = "player2down";
+            this.player2down.Size = new System.Drawing.Size(185, 25);
+            this.player2down.TabIndex = 20;
+            this.player2down.Text = "Доле";
+            this.player2down.UseVisualStyleBackColor = true;
+            // 
+            // player2up
+            // 
+            this.player2up.Location = new System.Drawing.Point(7, 128);
+            this.player2up.Name = "player2up";
+            this.player2up.Size = new System.Drawing.Size(185, 25);
+            this.player2up.TabIndex = 19;
+            this.player2up.Text = "Горе";
+            this.player2up.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Избери ориентација:";
+            // 
+            // player2right
+            // 
+            this.player2right.Location = new System.Drawing.Point(196, 81);
+            this.player2right.Name = "player2right";
+            this.player2right.Size = new System.Drawing.Size(185, 25);
+            this.player2right.TabIndex = 17;
+            this.player2right.Text = "Десно";
+            this.player2right.UseVisualStyleBackColor = true;
+            // 
+            // player2left
+            // 
+            this.player2left.Location = new System.Drawing.Point(7, 81);
+            this.player2left.Name = "player2left";
+            this.player2left.Size = new System.Drawing.Size(185, 25);
+            this.player2left.TabIndex = 16;
+            this.player2left.Text = "Лево";
+            this.player2left.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
+            this.AcceptButton = this.endturn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 710);
@@ -230,6 +345,16 @@ namespace yugioh
         private Label label11;
         private Label label12;
         private Label label1;
+        private Button player1down;
+        private Button player1up;
+        private Label label2;
+        private Button player1right;
+        private Button player1left;
+        private Button player2down;
+        private Button player2up;
+        private Label label3;
+        private Button player2right;
+        private Button player2left;
     }
 }
 
