@@ -440,12 +440,18 @@ namespace yugioh
         {
 
             bool valid = true;
-            foreach (Place p in squares)
+            if (squares == null)//ova if else
             {
-                if (player1Array.Contains(p) || player2Array.Contains(p))
+                valid = false;
+            }
+            else {
+                foreach (Place p in squares)
                 {
-                    DialogResult asd = MessageBox.Show((p.X) / 35 + " " + (p.Y) / 35, "bla", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    valid = false;
+                    if (player1Array.Contains(p) || player2Array.Contains(p))
+                    {
+                        DialogResult asd = MessageBox.Show((p.X) / 35 + " " + (p.Y) / 35, "bla", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        valid = false;
+                    }
                 }
             }
             return valid;
@@ -547,13 +553,14 @@ namespace yugioh
                     squares.Add(formaGrid[(startX - (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
                     squares.Add(formaGrid[(startX + (1 * colorX)) / 35 * 19 + (startY + (3 * colorY)) / 35]);
                 }
-                //return squares;
+                return squares;//ovoj return
             }
             catch (Exception e)
             {
                 DialogResult result = MessageBox.Show("Неможеш да ја расклопиш коцката надвор од гридот", "Пази каде расклопуваш", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;//ovoj return
             }
-            return squares;
+            //return squares;
         }
 
         //public bool canTshape(string direction)
@@ -743,11 +750,16 @@ namespace yugioh
 
         public int player1Points(ArrayList squares)
         {
-            foreach (Place p in squares)
+            if (squares == null)//ova if else
             {
-                if (p.imapoen == true && p.player1 == true)
+            }
+            else {
+                foreach (Place p in squares)
                 {
-                    igrac1.Points++;
+                    if (p.imapoen == true && p.player1 == true)
+                    {
+                        igrac1.Points++;
+                    }
                 }
             }
             return igrac1.Points;
@@ -755,11 +767,17 @@ namespace yugioh
 
         public int player2Points(ArrayList squares)
         {
-            foreach (Place p in squares)
+            if (squares == null)//ova if else
             {
-                if (p.imapoen == true && p.player2 == true)
+
+            }
+            else {
+                foreach (Place p in squares)
                 {
-                    igrac2.Points++;
+                    if (p.imapoen == true && p.player2 == true)
+                    {
+                        igrac2.Points++;
+                    }
                 }
             }
             return igrac2.Points;
