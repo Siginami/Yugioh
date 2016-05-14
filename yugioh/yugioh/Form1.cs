@@ -477,11 +477,11 @@ namespace yugioh
                     {
                         formaGrid[(promx / 35) * 19 + (promy / 35)].imapoen = true;
                         panel1.Refresh();
+                        break;
                     }
                     else
                     {
-                        kade = brojce.Next(1, 247);
-                        SpawnPoint(kade);
+                        SpawnPoint(brojce.Next(0, 247));
                     }
                 }
             }
