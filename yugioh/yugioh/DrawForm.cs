@@ -188,7 +188,7 @@ namespace yugioh
                 if (Distance(pos, frm.Position) < frm.Size / 2)
                 {
                     drwPlaces[i].isSelected = !drwPlaces[i].isSelected;
-                //return true;
+                    //return true;
                 }
             }
             return false;

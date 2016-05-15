@@ -69,7 +69,7 @@ namespace yugioh
             this.groupBox2.Controls.Add(this.player1left);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.player1poeni);
-            this.groupBox2.Location = new System.Drawing.Point(537, 13);
+            this.groupBox2.Location = new System.Drawing.Point(531, 431);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(387, 275);
             this.groupBox2.TabIndex = 13;
@@ -142,7 +142,6 @@ namespace yugioh
             this.player1poeni.Size = new System.Drawing.Size(180, 20);
             this.player1poeni.TabIndex = 9;
             this.player1poeni.Text = "0";
-            this.player1poeni.TextChanged += new System.EventHandler(this.player1zivoti_TextChanged);
             // 
             // groupBox3
             // 
@@ -153,7 +152,7 @@ namespace yugioh
             this.groupBox3.Controls.Add(this.player2left);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.player2poeni);
-            this.groupBox3.Location = new System.Drawing.Point(537, 431);
+            this.groupBox3.Location = new System.Drawing.Point(537, 8);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(387, 275);
             this.groupBox3.TabIndex = 14;
@@ -290,7 +289,6 @@ namespace yugioh
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 25;
             this.label10.Text = "Kocka1";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
@@ -326,6 +324,7 @@ namespace yugioh
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 710);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -337,7 +336,6 @@ namespace yugioh
             this.Controls.Add(this.endturn);
             this.Controls.Add(this.summon);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

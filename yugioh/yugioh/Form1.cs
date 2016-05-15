@@ -50,11 +50,6 @@ namespace yugioh
             player2Array = new ArrayList();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = panel1.CreateGraphics();
@@ -89,8 +84,6 @@ namespace yugioh
 
                     l = new Point(x * (cellSize + 10), y * (cellSize + 10));
                     formaGrid.AddObj(new Place(l, currentColor, cellSize));
-
-
                 }
             }
             formaGrid[132].player1 = true;
@@ -449,7 +442,7 @@ namespace yugioh
                 {
                     if (player1Array.Contains(p) || player2Array.Contains(p))
                     {
-                        DialogResult asd = MessageBox.Show((p.X) / 35 + " " + (p.Y) / 35, "bla", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult asd = MessageBox.Show("Локацијата " + (p.X) / 35 + " " + (p.Y) / 35 + " е зафатена", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         valid = false;
                     }
                 }
@@ -459,7 +452,37 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
-
+            Place selected = getSelectedPlace(direction);
+            ArrayList squares = getStshape(selected, direction);
+            if (prvigrac == false && getSelectedPlace(direction).player1 == true)
+            {
+                if (validateSummon(squares))
+                {
+                    summon.Enabled = false;
+                    stShapedSquares(direction);
+                }
+                else {
+                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else if (prvigrac == true && getSelectedPlace(direction).player2)
+            {
+                if (validateSummon(squares))
+                {
+                    summon.Enabled = false;
+                    stShapedSquares(direction);
+                }
+                else {
+                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            player1poeni.Text = player1Points(squares).ToString();
+            player2poeni.Text = player2Points(squares).ToString();
+            panel1.Refresh();
 
         }
 
@@ -561,7 +584,7 @@ namespace yugioh
                 return null;//ovoj return
             }
             //return squares;
-        }
+        } //proverka na standard T forma
 
         //public bool canTshape(string direction)
         //{
@@ -640,7 +663,7 @@ namespace yugioh
 
         //}
 
-        public void tShapedSquares(string direction)
+        public void tShapedSquares(string direction)//crtanje na standard T forma 
         {
             int startX = 0;
             int startY = 0;
@@ -733,17 +756,159 @@ namespace yugioh
             }
         }
 
+        public ArrayList getStshape(Place start, string direction)
+        {
+            int colorX = 1;
+            int colorY = 0;
+            switch (direction)
+            {
+                case "up":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+                case "down":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "right":
+                    colorX = -35;
+                    colorY = 35;
+                    break;
+                case "left":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+            }
+            ArrayList squares = new ArrayList();
+            int startX = start.X;
+            int startY = start.Y;
+            startX -= 35;
+            startY -= 35;
+            //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
+            try
+            {
+
+                if (direction == "right" || direction == "left")
+                {
+                    squares.Add(getIndexOfCube(startX, startY, 0, 1, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, -1, 1, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, -1, 2, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, -2, 2, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, -2, 3, colorX, colorY));
+                }
+                else
+                {
+                    //squares.Add(formaGrid[(startX / 35) * 19 + startY / 35]);
+                    squares.Add(getIndexOfCube(startX, startY, 0, 1, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 1, 1, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 1, 2, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 2, 2, colorX, colorY));
+                    squares.Add(getIndexOfCube(startX, startY, 2, 3, colorX, colorY));
+                }
+                return squares;//ovoj return
+            }
+            catch (Exception e)
+            {
+                DialogResult result = MessageBox.Show("Не можеш да ја расклопиш коцката надвор од гридот", "Пази каде расклопуваш", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;//ovoj return
+            }
+            //return squares;
+        }//proverka na skali forma
+
+        public void stShapedSquares(string direction)//crtanje na skali forma
+        {
+            int startX = 0;
+            int startY = 0;
+            int colorX = 1;
+            int colorY = 0;
+            switch (direction)
+            {
+                case "up":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+                case "down":
+                    colorX = 35;
+                    colorY = 35;
+                    break;
+                case "right":
+                    colorX = -35;
+                    colorY = 35;
+                    break;
+                case "left":
+                    colorX = 35;
+                    colorY = -35;
+                    break;
+            }
+            for (int i = 0; i < formaGrid.NumObjects; i++)
+            {
+                if (formaGrid[i].isSelected)
+                {
+                    startX = formaGrid[i].X;
+                    startY = formaGrid[i].Y;
+                    startX -= 35;
+                    startY -= 35;
+                }
+
+            }
+            if (!prvigrac)
+            {
+                if (direction == "up" || direction == "down")
+                {
+                    getIndexOfCube(startX, startY, 0, 0, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 0, 1, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 1, 1, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 1, 2, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 2, 2, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 2, 3, colorX, colorY).player1 = true;
+                }
+                else
+                {
+                    getIndexOfCube(startX, startY, 0, 0, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, 0, 1, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, -1, 1, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, -1, 2, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, -2, 2, colorX, colorY).player1 = true;
+                    getIndexOfCube(startX, startY, -2, 3, colorX, colorY).player1 = true;
+                }
+            }
+            else if (prvigrac)
+            {
+                if (direction == "up" || direction == "down")
+                {
+                    getIndexOfCube(startX, startY, 0, 0, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 0, 1, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 1, 1, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 1, 2, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 2, 2, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 2, 3, colorX, colorY).player2 = true;
+                }
+                else
+                {
+                    getIndexOfCube(startX, startY, 0, 0, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, 0, 1, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, -1, 1, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, -1, 2, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, -2, 2, colorX, colorY).player2 = true;
+                    getIndexOfCube(startX, startY, -2, 3, colorX, colorY).player2 = true;
+                }
+            }
+            player1Array = new ArrayList();
+            player2Array = new ArrayList();
+            foreach (Place p in formaGrid.drwPlaces)
+            {
+                if (p.player1)
+                {
+                    player1Array.Add(p);
+                }
+                else if (p.player2)
+                {
+                    player2Array.Add(p);
+                }
+            }
+        }
+
         void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void player1zivoti_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -835,7 +1000,7 @@ namespace yugioh
                     tShapedSquares(direction);
                 }
                 else {
-                    DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else if (prvigrac == true && getSelectedPlace(direction).player2)
@@ -846,12 +1011,12 @@ namespace yugioh
                     tShapedSquares(direction);
                 }
                 else {
-                    DialogResult result = MessageBox.Show("KADE BE!", "HA!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                DialogResult result = MessageBox.Show("Селектирајте ваша коцка", "Ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             player1poeni.Text = player1Points(squares).ToString();
             player2poeni.Text = player2Points(squares).ToString();
