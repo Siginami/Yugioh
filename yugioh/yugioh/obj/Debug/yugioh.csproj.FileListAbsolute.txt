@@ -1,0 +1,9 @@
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\bin\Debug\yugioh.exe.config
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\bin\Debug\yugioh.exe
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\bin\Debug\yugioh.pdb
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.csprojResolveAssemblyReference.cache
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.Form1.resources
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.Properties.Resources.resources
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.csproj.GenerateResource.Cache
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.exe
+C:\Users\Dimo\Documents\Yugioh\yugioh\yugioh\obj\Debug\yugioh.pdb
