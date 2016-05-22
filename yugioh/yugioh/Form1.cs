@@ -458,37 +458,44 @@ namespace yugioh
 
         private void summon_Click(object sender, EventArgs e)
         {
-            Place selected = getSelectedPlace(direction);
-            ArrayList squares = getStshape(selected, direction);
-            if (prvigrac == false && getSelectedPlace(direction).player1 == true)
+            try
             {
-                if (validateSummon(squares))
+                Place selected = getSelectedPlace(direction);
+                ArrayList squares = getStshape(selected, direction);
+                if (prvigrac == false && getSelectedPlace(direction).player1 == true)
                 {
-                    summon.Enabled = false;
-                    stShapedSquares(direction);
+                    if (validateSummon(squares))
+                    {
+                        summon.Enabled = false;
+                        stShapedSquares(direction);
+                    }
+                    else {
+                        DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else {
-                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (prvigrac == true && getSelectedPlace(direction).player2)
-            {
-                if (validateSummon(squares))
+                else if (prvigrac == true && getSelectedPlace(direction).player2)
                 {
-                    summon.Enabled = false;
-                    stShapedSquares(direction);
+                    if (validateSummon(squares))
+                    {
+                        summon.Enabled = false;
+                        stShapedSquares(direction);
+                    }
+                    else {
+                        DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else {
-                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                player1poeni.Text = player1Points(squares).ToString();
+                player2poeni.Text = player2Points(squares).ToString();
+                panel1.Refresh();
             }
-            else
+            catch
             {
-                DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Треба да селектирате коцка во гридот.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            player1poeni.Text = player1Points(squares).ToString();
-            player2poeni.Text = player2Points(squares).ToString();
-            panel1.Refresh();
 
         }
 
