@@ -17,6 +17,7 @@ namespace yugioh
         string direction = "up";
         Igrac2 igrac1 = new Igrac2();
         Igrac2 igrac2 = new Igrac2();
+        int prvidvakruga = 0;
         string whatsummon = "";//da se znae koj summon kje se pravi
         bool prvigrac = false;//dali e prviot ili vtoriot na red igrata pocnuva koga kje se klikne end turn
         bool flag = true;//dali e kliknato end turn prethodno ili ne
@@ -341,10 +342,15 @@ namespace yugioh
                 summon.Enabled = true;
                 whatsummon = "Summon4";
             }
+            if (prvidvakruga <= 2)
+            {
+                summon.Enabled = false;
+            }
         }
 
         private void endturn_Click(object sender, EventArgs e)
         {
+            prvidvakruga++;
             button1.Enabled = true;
             if (summon.Enabled)
             {
@@ -990,37 +996,44 @@ namespace yugioh
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Place selected = getSelectedPlace(direction);
-            ArrayList squares = getTshape(selected, direction);
-            if (prvigrac == false && getSelectedPlace(direction).player1 == true)
+            try // try catch za da vidi dali ima selektirano kocka vo slucaj da nema
             {
-                if (validateSummon(squares))
+                Place selected = getSelectedPlace(direction);
+                ArrayList squares = getTshape(selected, direction);
+                if (prvigrac == false && getSelectedPlace(direction).player1 == true)
                 {
-                    button1.Enabled = false;
-                    tShapedSquares(direction);
+                    if (validateSummon(squares))
+                    {
+                        button1.Enabled = false;
+                        tShapedSquares(direction);
+                    }
+                    else {
+                        DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else {
-                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (prvigrac == true && getSelectedPlace(direction).player2)
-            {
-                if (validateSummon(squares))
+                else if (prvigrac == true && getSelectedPlace(direction).player2)
                 {
-                    button1.Enabled = false;
-                    tShapedSquares(direction);
+                    if (validateSummon(squares))
+                    {
+                        button1.Enabled = false;
+                        tShapedSquares(direction);
+                    }
+                    else {
+                        DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else {
-                    DialogResult result = MessageBox.Show("Изберете друга почетна коцка, тие позиции се зафатени.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                player1poeni.Text = player1Points(squares).ToString();
+                player2poeni.Text = player2Points(squares).ToString();
+                panel1.Refresh();
             }
-            else
+            catch
             {
-                DialogResult result = MessageBox.Show("Почетната коцка мора да биде ваша", "Селектирајте ваша коцка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Треба да селектирате коцка во гридот.", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            player1poeni.Text = player1Points(squares).ToString();
-            player2poeni.Text = player2Points(squares).ToString();
-            panel1.Refresh();
         }
     }
 }
